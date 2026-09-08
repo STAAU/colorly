@@ -23,6 +23,8 @@ Prefer native Apple-like UI. Avoid web-dashboard-style components unless explici
 - The product UI uses an artwork-first editorial system: warm paper background, deep ink, lavender/coral/sky/mint accents, floating navigation, large imagery, and restrained native motion. Engine and canvas layers remain visually isolated from redesign work.
 - Phase 3 Now adds a dependency-injected local AI-generation vertical slice: generated-source page metadata, resumable generation state, deterministic complexity-aware fixture art, separate master/thumbnail history storage, Gallery AI Creations, and project-local line-art copies for offline resume.
 - Live AI remains backend-gated: existing Supabase + OpenAI Images, Sign in with Apple, RLS-owned generation/history, private Storage, moderation, validation, idempotency, and a server-configurable three-per-day limit belong to Phase 3 Next.
+- Phase 4 Now adds an offline-testable Photo Studio: system photo selection, native camera confirmation, square zoom/pan composition, metadata-free bounded JPEG preparation, style/background options, deterministic validated fixture line art, resumable photo history, Gallery revisit/delete, and project-local offline handoff through the unchanged engine.
+- Live photo transformation remains backend-gated: private temporary input/output Storage, OpenAI image transformation, post-processing, cleanup, RLS, usage limits, and cross-device history belong to Phase 4 Next.
 
 ## Pitfalls
 

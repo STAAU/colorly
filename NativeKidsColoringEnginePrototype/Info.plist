@@ -26,6 +26,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Take a photo to turn into a coloring page.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Save your finished coloring picture to Photos.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

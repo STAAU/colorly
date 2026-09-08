@@ -5,6 +5,9 @@ struct GalleryView: View {
     @State private var selected: ColoringProject?
     @State private var generatedSelection: GeneratedPageRecord?
     @State private var deleteCandidate: GeneratedPageRecord?
+    @State private var photoSelection: PhotoGenerationRecord?
+    @State private var photoDeleteCandidate: PhotoGenerationRecord?
+    private var visiblePhotos:[PhotoGenerationRecord] { model.photoHistory.filter{$0.status == .completed && !$0.isHiddenFromGallery} }
     private var visibleGenerations: [GeneratedPageRecord] {
         model.generatedHistory.filter { $0.status == .completed && !$0.isHiddenFromGallery }
     }
@@ -14,8 +17,9 @@ struct GalleryView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 30) {
                     EditorialHeader(eyebrow: "Personal collection", title: "Your gallery")
+                    photoSection
                     generatedSection
-                    if model.projects.isEmpty && visibleGenerations.isEmpty { emptyState } else {
+                    if model.projects.isEmpty && visibleGenerations.isEmpty && visiblePhotos.isEmpty { emptyState } else {
                         section("Works in progress", .inProgress)
                         section("Finished pieces", .finished)
                     }
@@ -25,11 +29,15 @@ struct GalleryView: View {
             if let page = model.page(id: project.pageID) { EditorLoaderView(page: page, project: project) }
         }
         .sheet(item: $generatedSelection) { record in GeneratedResultView(record: record) }
+        .sheet(item:$photoSelection){PhotoResultView(record:$0)}
+        .confirmationDialog("Delete this photo creation?",isPresented:Binding(get:{photoDeleteCandidate != nil},set:{if !$0{photoDeleteCandidate=nil}}),titleVisibility:.visible){Button("Delete Creation",role:.destructive){if let value=photoDeleteCandidate{model.delete(value)};photoDeleteCandidate=nil};Button("Cancel",role:.cancel){photoDeleteCandidate=nil}}message:{Text("Its coloring project, if any, will remain available offline.")}
         .confirmationDialog("Delete this AI creation?", isPresented: Binding(get: { deleteCandidate != nil }, set: { if !$0 { deleteCandidate=nil } }), titleVisibility: .visible) {
             Button("Delete Creation", role: .destructive) { if let value=deleteCandidate { model.delete(value) }; deleteCandidate=nil }
             Button("Cancel", role: .cancel) { deleteCandidate=nil }
         } message: { Text("Its saved coloring project, if any, will remain available.") }
     }
+
+    @ViewBuilder private var photoSection:some View { if !visiblePhotos.isEmpty{VStack(alignment:.leading,spacing:14){ArtSectionTitle("Photo Creations",detail:"\(visiblePhotos.count)");LazyVGrid(columns:[GridItem(.adaptive(minimum:160,maximum:260),spacing:18)],spacing:22){ForEach(visiblePhotos){record in PhotoCreationCard(record:record).contentShape(Rectangle()).onTapGesture{photoSelection=record}.contextMenu{Button("Delete",role:.destructive){photoDeleteCandidate=record}}}}}} }
 
     @ViewBuilder private var generatedSection: some View {
         let records = visibleGenerations

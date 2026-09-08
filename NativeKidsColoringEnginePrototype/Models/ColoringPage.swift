@@ -6,7 +6,14 @@ enum ColoringDifficulty: String, Codable, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-enum ColoringPageSource: String, Codable { case curated, generated, futurePhoto }
+enum ColoringPageSource: String, Codable {
+    case curated, generated, photoGenerated, futurePhoto
+
+    init(from decoder: Decoder) throws {
+        let value = try decoder.singleValueContainer().decode(String.self)
+        self = ColoringPageSource(rawValue: value) ?? .curated
+    }
+}
 
 struct GeneratedPageOrigin: Codable, Hashable {
     let generationID: UUID

@@ -10,6 +10,7 @@
 		0293D8CFB011D9214774E2A7 /* ColoringViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33484297EED77AE6630EDE3 /* ColoringViewModel.swift */; };
 		08BE157FDFB42D47E0DE21FA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98C1B1DC0AC26EAEAAC370 /* HomeView.swift */; };
 		10D4E50E586A1D2C67386B80 /* ColoringCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84786EA16203BD565670D13F /* ColoringCategory.swift */; };
+		14418BE2E3426E4A5173D338 /* PhotoAcquisitionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB1929968E84B83775CAF5 /* PhotoAcquisitionViews.swift */; };
 		170C1F0E729244A3C5977507 /* ColoringPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEB4DEB621611304B87D1A /* ColoringPageView.swift */; };
 		1A61DB820320EA64D1DAF77F /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B6EDB0EB53ED131DF3CD0E /* AppModel.swift */; };
 		1D04D0669DBAD64EB594EBBF /* DrawingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03247565A2E70CF036D95103 /* DrawingAction.swift */; };
@@ -23,6 +24,7 @@
 		49A86CB93E469A2959F6E832 /* SampleContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737D1DC4679A6839F5DC918 /* SampleContent.swift */; };
 		4A8713F54F8F6C7D05DC8EC4 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401397C293A452E7EC692AB3 /* FavoritesService.swift */; };
 		4C5F6BA29FE4FC46BA729A8F /* GeneratedContentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9ADE4284C5FE1653A6EF7 /* GeneratedContentServices.swift */; };
+		4EA36A52B6F2FDDA5F167DD8 /* PhotoGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15E0084CA7A1C029B771E3E /* PhotoGeneration.swift */; };
 		4F29EF97B08FC5C75407F477 /* ProjectCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DF6903D1143DCC1DB159A /* ProjectCard.swift */; };
 		4F8222A4FC5C1C7325FE993F /* ColoringScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00033B1136AD8D2008F649 /* ColoringScreen.swift */; };
 		4FCA1314466D4343419A071C /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D47725C07914C1A998335 /* GalleryView.swift */; };
@@ -31,6 +33,7 @@
 		5BAE3685BC8BA0385D666D8D /* GeneratedResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903826AC0332B1E9650D3099 /* GeneratedResultView.swift */; };
 		5C87B9D3D76BB09229DACC8A /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C91C2E2AD83D939AA2981D7 /* ColorPalette.swift */; };
 		5F54FF6DAE3D45B0FA0258E4 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADA5E0C36D15E4ADF998B7 /* HistoryManager.swift */; };
+		5F9622C5FE0DFABB62981E8B /* PhotoActionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1635E20DF308EB15A15E3AF7 /* PhotoActionLabel.swift */; };
 		62727E1AEE5A22E274787227 /* ColoringPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C79E6172FBA69FC9E63BC /* ColoringPage.swift */; };
 		6E294177537847FC089FA369 /* BrushSizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24347DBE21B17DEB1B4E3C0D /* BrushSizePicker.swift */; };
 		7523D3426CE9A885AC74AFA2 /* SampleCatPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B0D148A45794101DE9EA52 /* SampleCatPageRenderer.swift */; };
@@ -38,6 +41,7 @@
 		7B2F1666B67670ACC09B5B90 /* CanvasStatusOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */; };
 		80477E92F2A16D070E86A1D6 /* ColoringToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF071743D88C72B4741AD24 /* ColoringToolbar.swift */; };
 		82A6774D7D775345989609E9 /* LocalContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58ABE2BE866B949B298EF4 /* LocalContentRepository.swift */; };
+		86B8B89997D0E7284920DA40 /* PhotoCreationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB491817D918CA9E12BC40A /* PhotoCreationViews.swift */; };
 		88EC52C10D33AB4E5930FC21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C081854DC631700B670B671 /* LaunchScreen.storyboard */; };
 		8C32F999A38D7F7A6C4B045B /* PhotoSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */; };
 		8F7325AE79CAB9D1C9990776 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63FA56E5ED2764012C1C310 /* CreateView.swift */; };
@@ -49,8 +53,10 @@
 		A67E09A578D4847AD129C577 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */; };
 		AA8F09299E9618CEA8A1E0B6 /* ColoringDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */; };
 		B3ABDD16DA20C3103455A060 /* LocalArtworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8338032EF427D785F7D7D3 /* LocalArtworkProvider.swift */; };
+		B993A066ECDC0F10D00D69D8 /* PhotoCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B74240722A551506B3EF4 /* PhotoCreateView.swift */; };
 		C3486499AF96CEEC92635771 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FAE9ED69EECED05E8089FB /* CategoryView.swift */; };
 		C6072EAD00D71DBAEE3F6A6A /* GeneratedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6E861EF220735C84F945E2 /* GeneratedContent.swift */; };
+		D33673F40DC4100C9EFF5255 /* PhotoGenerationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30892A093FD637715C28227E /* PhotoGenerationServices.swift */; };
 		D80631FEDB50A50FA02235D4 /* ColoringPageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713734F0345D2228CE3BA0D9 /* ColoringPageCard.swift */; };
 		F49167BDFF7187B7AA9CEB8C /* ColoringPagePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B2F47D1554971276FC814 /* ColoringPagePreviewView.swift */; };
 		F7263D02AD31674C802A31CD /* PaintSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A93E09456FE6C61E711DA /* PaintSurface.swift */; };
@@ -64,13 +70,17 @@
 		05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColor.swift; sourceTree = "<group>"; };
 		0C6E861EF220735C84F945E2 /* GeneratedContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedContent.swift; sourceTree = "<group>"; };
 		11C40B3EBE7BEC4E16B64506 /* GeneratedCreationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedCreationCard.swift; sourceTree = "<group>"; };
+		13BB1929968E84B83775CAF5 /* PhotoAcquisitionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAcquisitionViews.swift; sourceTree = "<group>"; };
 		142C79E6172FBA69FC9E63BC /* ColoringPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPage.swift; sourceTree = "<group>"; };
+		1635E20DF308EB15A15E3AF7 /* PhotoActionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActionLabel.swift; sourceTree = "<group>"; };
+		1AB491817D918CA9E12BC40A /* PhotoCreationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreationViews.swift; sourceTree = "<group>"; };
 		1B0A69D682DEDE11B0ABA4AC /* ColoringCanvasRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringCanvasRepresentable.swift; sourceTree = "<group>"; };
 		1F94D988496E92D7F64B7EFB /* ProjectStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStorageService.swift; sourceTree = "<group>"; };
 		2295AFE525FBCD4DC28B8C23 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		24347DBE21B17DEB1B4E3C0D /* BrushSizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushSizePicker.swift; sourceTree = "<group>"; };
 		26B6EDB0EB53ED131DF3CD0E /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		302967B54D3C2544A070F498 /* NativeKidsColoringEnginePrototype.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NativeKidsColoringEnginePrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30892A093FD637715C28227E /* PhotoGenerationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGenerationServices.swift; sourceTree = "<group>"; };
 		318B86F4ACB60F057D48F696 /* ColoringProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringProject.swift; sourceTree = "<group>"; };
 		3F8DF6903D1143DCC1DB159A /* ProjectCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCard.swift; sourceTree = "<group>"; };
 		3FE01E98644F028CE93E0042 /* NativeKidsColoringEnginePrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeKidsColoringEnginePrototypeApp.swift; sourceTree = "<group>"; };
@@ -101,6 +111,8 @@
 		C63FA56E5ED2764012C1C310 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		C7FF643E4436BA6CC8F02916 /* ArtfulStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtfulStyle.swift; sourceTree = "<group>"; };
 		CEBD2CDDC3D181AC9DC2E54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CF9B74240722A551506B3EF4 /* PhotoCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreateView.swift; sourceTree = "<group>"; };
+		D15E0084CA7A1C029B771E3E /* PhotoGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGeneration.swift; sourceTree = "<group>"; };
 		D70A93E09456FE6C61E711DA /* PaintSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSurface.swift; sourceTree = "<group>"; };
 		DAADA5E0C36D15E4ADF998B7 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		DBBEB4DEB621611304B87D1A /* ColoringPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPageView.swift; sourceTree = "<group>"; };
@@ -113,6 +125,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0154294398F7F4DB9B6A3E39 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				13BB1929968E84B83775CAF5 /* PhotoAcquisitionViews.swift */,
+				1635E20DF308EB15A15E3AF7 /* PhotoActionLabel.swift */,
+				CF9B74240722A551506B3EF4 /* PhotoCreateView.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		1F38B54DB2172D627EA088A0 /* Coloring */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB03CD23AAA99054127365C /* AI */,
+				0154294398F7F4DB9B6A3E39 /* Photo */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -188,6 +211,7 @@
 				03247565A2E70CF036D95103 /* DrawingAction.swift */,
 				0C6E861EF220735C84F945E2 /* GeneratedContent.swift */,
 				05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */,
+				D15E0084CA7A1C029B771E3E /* PhotoGeneration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +240,7 @@
 			children = (
 				401397C293A452E7EC692AB3 /* FavoritesService.swift */,
 				8CD9ADE4284C5FE1653A6EF7 /* GeneratedContentServices.swift */,
+				30892A093FD637715C28227E /* PhotoGenerationServices.swift */,
 				7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */,
 				1F94D988496E92D7F64B7EFB /* ProjectStorageService.swift */,
 				6AB654C19E0F64572C60E36B /* ThumbnailService.swift */,
@@ -229,6 +254,7 @@
 				013D47725C07914C1A998335 /* GalleryView.swift */,
 				11C40B3EBE7BEC4E16B64506 /* GeneratedCreationCard.swift */,
 				903826AC0332B1E9650D3099 /* GeneratedResultView.swift */,
+				1AB491817D918CA9E12BC40A /* PhotoCreationViews.swift */,
 				3F8DF6903D1143DCC1DB159A /* ProjectCard.swift */,
 			);
 			path = Gallery;
@@ -407,6 +433,12 @@
 				477F230F2A50843132F6B61B /* NativeKidsColoringEnginePrototypeApp.swift in Sources */,
 				F7263D02AD31674C802A31CD /* PaintSurface.swift in Sources */,
 				A67E09A578D4847AD129C577 /* PaletteColor.swift in Sources */,
+				14418BE2E3426E4A5173D338 /* PhotoAcquisitionViews.swift in Sources */,
+				5F9622C5FE0DFABB62981E8B /* PhotoActionLabel.swift in Sources */,
+				B993A066ECDC0F10D00D69D8 /* PhotoCreateView.swift in Sources */,
+				86B8B89997D0E7284920DA40 /* PhotoCreationViews.swift in Sources */,
+				4EA36A52B6F2FDDA5F167DD8 /* PhotoGeneration.swift in Sources */,
+				D33673F40DC4100C9EFF5255 /* PhotoGenerationServices.swift in Sources */,
 				8C32F999A38D7F7A6C4B045B /* PhotoSaveService.swift in Sources */,
 				4F29EF97B08FC5C75407F477 /* ProjectCard.swift in Sources */,
 				22CC4A40D5CD6E689EDD78CE /* ProjectStorageService.swift in Sources */,

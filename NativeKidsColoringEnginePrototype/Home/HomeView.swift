@@ -4,6 +4,7 @@ struct HomeView: View {
     @Environment(AppModel.self) private var model
     @State private var resume: ColoringProject?
     @State private var showsCreate = false
+    @State private var showsPhotoCreate = false
 
     private var featured: ColoringPage? { model.content.pages.first(where: \.isFeatured) ?? model.content.pages.first }
     private var activeProjects: [ColoringProject] { Array(model.projects.filter { $0.status == .inProgress }.sorted { $0.updatedAt > $1.updatedAt }.prefix(6)) }
@@ -31,16 +32,17 @@ struct HomeView: View {
             if let page = model.page(id: project.pageID) { EditorLoaderView(page: page, project: project) }
         }
         .sheet(isPresented: $showsCreate) { CreateView() }
+        .sheet(isPresented: $showsPhotoCreate) { PhotoCreateView() }
     }
 
     private var createHero: some View {
-        Button { showsCreate = true } label: {
-            HStack(spacing: 18) {
-                Image(systemName: "wand.and.stars").font(.system(size: 34, weight: .semibold))
-                VStack(alignment: .leading, spacing: 4) { Text("Create with AI").font(.title2.bold()); Text("Dream it. Then color it.").foregroundStyle(.white.opacity(0.82)) }
-                Spacer(); Image(systemName: "arrow.right.circle.fill").font(.title)
-            }.padding(22).foregroundStyle(.white).background(LinearGradient(colors: [Color.artCoral, Color.artLavender], startPoint: .leading, endPoint: .trailing), in: RoundedRectangle(cornerRadius: 26))
-        }.buttonStyle(PressScaleStyle()).accessibilityHint("Opens the coloring page creator")
+        HStack(spacing: 14) {
+            creationAction("Describe with AI", "wand.and.stars", Color.artLavender) { showsCreate = true }
+            creationAction("Use a Photo", "camera.fill", Color.artCoral) { showsPhotoCreate = true }
+        }
+    }
+    private func creationAction(_ title:String,_ symbol:String,_ color:Color,action:@escaping()->Void)->some View {
+        Button(action:action){VStack(alignment:.leading,spacing:16){Image(systemName:symbol).font(.system(size:30,weight:.semibold));Text(title).font(.title3.bold()).multilineTextAlignment(.leading);Image(systemName:"arrow.right.circle.fill").font(.title2)}.frame(maxWidth:.infinity,alignment:.leading).padding(20).foregroundStyle(.white).background(color,in:RoundedRectangle(cornerRadius:26))}.buttonStyle(PressScaleStyle())
     }
 
     private func hero(_ page: ColoringPage) -> some View {

@@ -45,6 +45,7 @@ targets:
         CFBundleIconName: AppIcon
         ITSAppUsesNonExemptEncryption: false
         NSPhotoLibraryAddUsageDescription: Save your finished coloring picture to Photos.
+        NSCameraUsageDescription: Take a photo to turn into a coloring page.
         LSRequiresIPhoneOS: true
         UIApplicationSupportsIndirectInputEvents: true
         UILaunchStoryboardName: LaunchScreen
