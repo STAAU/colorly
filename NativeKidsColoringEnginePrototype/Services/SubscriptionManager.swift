@@ -16,8 +16,8 @@ enum PremiumAccessState: Equatable {
 @MainActor @Observable final class SubscriptionManager {
     static let entitlementID = "premium"
     private static let revenueCatKey = "appl_iUnPTOvYvUFrKyiGMNpGtmQyDbt"
-    static let supabaseURL = URL(string: "https://mqpwhaxmeamlgydhkdnc.supabase.co")!
-    static let supabaseKey = "sb_publishable_H0jv0HAfvaQHWQTjg1z5ZA_b-_32gPd"
+    static let supabaseURL = URL(string: "https://amshmuuxomoquggqepik.supabase.co")!
+    static let supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJIUzI1NiIsInJlZiI6ImFtc2htdXV4b21vcXVnZ3FlcGlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4ODU2ODcsImV4cCI6MjEwNDQ2MTY4N30.8wS_GxYHpzUUm7VMs01fb_Vgs5rOaZC7U6GJE95Im90"
     private static let cachedPremiumKey = "premium.entitlement.cached"
     private static let cachedPremiumDateKey = "premium.entitlement.verifiedAt"
     private static let offlineCacheLifetime: TimeInterval = 72 * 60 * 60
