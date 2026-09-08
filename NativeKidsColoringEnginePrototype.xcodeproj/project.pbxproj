@@ -1,0 +1,210 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23F15C855185CC82BEEC68FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB3460590304249071EE5033 /* Assets.xcassets */; };
+		88EC52C10D33AB4E5930FC21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C081854DC631700B670B671 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		302967B54D3C2544A070F498 /* NativeKidsColoringEnginePrototype.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NativeKidsColoringEnginePrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E42DF86DF51573E013AD0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CEBD2CDDC3D181AC9DC2E54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB3460590304249071EE5033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		27A64DDAC09AD4C6EAAD60E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				302967B54D3C2544A070F498 /* NativeKidsColoringEnginePrototype.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C47D1A974DFBDE1903F92CBC /* NativeKidsColoringEnginePrototype */ = {
+			isa = PBXGroup;
+			children = (
+				EB3460590304249071EE5033 /* Assets.xcassets */,
+				A5E42DF86DF51573E013AD0C /* Info.plist */,
+				4C081854DC631700B670B671 /* LaunchScreen.storyboard */,
+			);
+			path = NativeKidsColoringEnginePrototype;
+			sourceTree = "<group>";
+		};
+		FCF62D31EFFA0370006BA044 = {
+			isa = PBXGroup;
+			children = (
+				C47D1A974DFBDE1903F92CBC /* NativeKidsColoringEnginePrototype */,
+				27A64DDAC09AD4C6EAAD60E9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A36EFC874D50B54BC507869 /* NativeKidsColoringEnginePrototype */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 362C115D071B41EADE439A4B /* Build configuration list for PBXNativeTarget "NativeKidsColoringEnginePrototype" */;
+			buildPhases = (
+				7E753530B7B5493A65ED0DE9 /* Sources */,
+				1B2D2965700FBB47181F4F2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NativeKidsColoringEnginePrototype;
+			packageProductDependencies = (
+			);
+			productName = NativeKidsColoringEnginePrototype;
+			productReference = 302967B54D3C2544A070F498 /* NativeKidsColoringEnginePrototype.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1DB924D24B67E0BD5B4AB286 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 8B8533D26A667259339B1BEB /* Build configuration list for PBXProject "NativeKidsColoringEnginePrototype" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = FCF62D31EFFA0370006BA044;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 27A64DDAC09AD4C6EAAD60E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A36EFC874D50B54BC507869 /* NativeKidsColoringEnginePrototype */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1B2D2965700FBB47181F4F2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F15C855185CC82BEEC68FF /* Assets.xcassets in Resources */,
+				88EC52C10D33AB4E5930FC21 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E753530B7B5493A65ED0DE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C081854DC631700B670B671 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEBD2CDDC3D181AC9DC2E54F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D113D50A64261F6B46DA5AD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_NAME = NativeKidsColoringEnginePrototype;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E6298A2979D5FE1B1849EE46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NativeKidsColoringEnginePrototype/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superapp.nativekidscoloringengineprototgky1m;
+			};
+			name = Release;
+		};
+		F172F2CC87279F7A3E0083E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NativeKidsColoringEnginePrototype/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superapp.nativekidscoloringengineprototgky1m;
+			};
+			name = Debug;
+		};
+		F786B7ABF395CA58FFECE171 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_NAME = NativeKidsColoringEnginePrototype;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		362C115D071B41EADE439A4B /* Build configuration list for PBXNativeTarget "NativeKidsColoringEnginePrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F172F2CC87279F7A3E0083E7 /* Debug */,
+				E6298A2979D5FE1B1849EE46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8B8533D26A667259339B1BEB /* Build configuration list for PBXProject "NativeKidsColoringEnginePrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F786B7ABF395CA58FFECE171 /* Debug */,
+				D113D50A64261F6B46DA5AD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1DB924D24B67E0BD5B4AB286 /* Project object */;
+}
