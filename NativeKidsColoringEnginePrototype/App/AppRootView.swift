@@ -6,8 +6,6 @@ struct AppRootView: View {
     var body: some View {
         @Bindable var model = model
         MainTabView()
-            .fontDesign(.rounded)
-            .tint(Color.artLavender)
             .onChange(of: scenePhase) { _, phase in
                 if phase != .active { model.flushActiveEditor() }
                 else { Task { await model.subscriptions.refreshCustomerInfo() } }

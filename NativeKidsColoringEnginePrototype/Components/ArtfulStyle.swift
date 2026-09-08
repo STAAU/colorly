@@ -1,10 +1,10 @@
 import SwiftUI
 
 extension Color {
-    static let artInk = Color(light: UIColor(red: 0.09, green: 0.09, blue: 0.11, alpha: 1), dark: .white)
-    static let artPaper = Color(light: UIColor(red: 0.975, green: 0.968, blue: 0.985, alpha: 1), dark: UIColor(red: 0.07, green: 0.07, blue: 0.09, alpha: 1))
-    static let artLavender = Color(red: 0.49, green: 0.37, blue: 0.88)
-    static let artCoral = Color(red: 0.92, green: 0.42, blue: 0.39)
+    static let artInk = Color(light: UIColor(red: 0.10, green: 0.10, blue: 0.15, alpha: 1), dark: .white)
+    static let artPaper = Color(light: UIColor(red: 0.98, green: 0.96, blue: 0.92, alpha: 1), dark: UIColor(red: 0.07, green: 0.07, blue: 0.09, alpha: 1))
+    static let artLavender = Color(red: 0.55, green: 0.47, blue: 0.91)
+    static let artCoral = Color(red: 0.96, green: 0.39, blue: 0.37)
     static let artSky = Color(red: 0.36, green: 0.68, blue: 0.91)
     static let artMint = Color(red: 0.39, green: 0.76, blue: 0.62)
     static let aiSky = Color(red: 0.41, green: 0.82, blue: 0.91)
@@ -23,8 +23,8 @@ struct EditorialHeader: View {
     let title: String
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text(eyebrow.uppercased()).font(.caption.weight(.heavy)).tracking(1.5).foregroundStyle(Color.artCoral)
-            Text(title).font(.largeTitle.weight(.heavy)).foregroundStyle(Color.artInk)
+            Text(eyebrow.uppercased()).font(.caption.weight(.bold)).tracking(1.5).foregroundStyle(Color.artCoral)
+            Text(title).font(.largeTitle.bold()).foregroundStyle(Color.artInk)
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
 }
@@ -35,7 +35,7 @@ struct ArtSectionTitle: View {
     init(_ title: String, detail: String? = nil) { self.title = title; self.detail = detail }
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
-            Text(title).font(.title2.weight(.heavy)).foregroundStyle(Color.artInk)
+            Text(title).font(.title2.bold()).foregroundStyle(Color.artInk)
             Spacer()
             if let detail { Text(detail).font(.subheadline).foregroundStyle(.secondary) }
         }

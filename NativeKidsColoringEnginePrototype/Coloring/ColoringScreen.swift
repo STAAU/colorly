@@ -72,7 +72,7 @@ struct ColoringScreen: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-        .tint(Color.artLavender)
+        .tint(Color(red: 0.08, green: 0.47, blue: 0.94))
     }
 
     private var canvas: some View {
