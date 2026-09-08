@@ -66,6 +66,7 @@
 		F49167BDFF7187B7AA9CEB8C /* ColoringPagePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B2F47D1554971276FC814 /* ColoringPagePreviewView.swift */; };
 		F7263D02AD31674C802A31CD /* PaintSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A93E09456FE6C61E711DA /* PaintSurface.swift */; };
 		F7DCBA29B3FF8CAB9A2CD98F /* BoundaryMaskBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54F0A875FDB7970B39BDDC /* BoundaryMaskBuilder.swift */; };
+		FCA62085F55D0719BA531D68 /* GenerationAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68772DD2D877394F6C56267 /* GenerationAccessService.swift */; };
 		FDC1B55D86DBF812D7562080 /* BrushSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8B6E8D8FBEB2C31A81C2B /* BrushSize.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,7 @@
 		EB3460590304249071EE5033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1E609A05637166572FC4A8B /* ColoringTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringTool.swift; sourceTree = "<group>"; };
 		F33484297EED77AE6630EDE3 /* ColoringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringViewModel.swift; sourceTree = "<group>"; };
+		F68772DD2D877394F6C56267 /* GenerationAccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationAccessService.swift; sourceTree = "<group>"; };
 		FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +270,7 @@
 			children = (
 				401397C293A452E7EC692AB3 /* FavoritesService.swift */,
 				8CD9ADE4284C5FE1653A6EF7 /* GeneratedContentServices.swift */,
+				F68772DD2D877394F6C56267 /* GenerationAccessService.swift */,
 				30892A093FD637715C28227E /* PhotoGenerationServices.swift */,
 				7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */,
 				1F94D988496E92D7F64B7EFB /* ProjectStorageService.swift */,
@@ -471,6 +474,7 @@
 				4C5F6BA29FE4FC46BA729A8F /* GeneratedContentServices.swift in Sources */,
 				5B5D1ADD9F38B991DA6102AB /* GeneratedCreationCard.swift in Sources */,
 				5BAE3685BC8BA0385D666D8D /* GeneratedResultView.swift in Sources */,
+				FCA62085F55D0719BA531D68 /* GenerationAccessService.swift in Sources */,
 				5F54FF6DAE3D45B0FA0258E4 /* HistoryManager.swift in Sources */,
 				08BE157FDFB42D47E0DE21FA /* HomeView.swift in Sources */,
 				B3ABDD16DA20C3103455A060 /* LocalArtworkProvider.swift in Sources */,

@@ -12,7 +12,7 @@ enum PhotoBackgroundMode: String, Codable, CaseIterable, Identifiable {
 }
 enum PhotoGenerationStatus: String, Codable { case uploading, processing, cleaning, completed, failed }
 enum PhotoGenerationFailure: String, Codable, Error, Identifiable {
-    case corrupt, blank, tooSmall, unsupported, tooDark, invalidOutput, cameraDenied, cameraUnavailable, storage, cancelled, unknown
+    case corrupt, blank, tooSmall, unsupported, tooDark, invalidOutput, cameraDenied, cameraUnavailable, storage, cancelled, limitReached, offline, unknown
     var id: String { rawValue }
     var message: String {
         switch self {
@@ -26,6 +26,8 @@ enum PhotoGenerationFailure: String, Codable, Error, Identifiable {
         case .cameraUnavailable: "A camera isn’t available on this device."
         case .storage: "We couldn’t save this creation on your device."
         case .cancelled: "Photo preparation was cancelled."
+        case .limitReached: "You’ve reached your photo creation allowance."
+        case .offline: "Connect to the internet to check your creation allowance, then try again."
         case .unknown: "Something went wrong. Please try again."
         }
     }

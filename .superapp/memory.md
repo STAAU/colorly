@@ -25,6 +25,8 @@ Prefer native Apple-like UI. Avoid web-dashboard-style components unless explici
 - Live AI remains backend-gated: existing Supabase + OpenAI Images, Sign in with Apple, RLS-owned generation/history, private Storage, moderation, validation, idempotency, and a server-configurable three-per-day limit belong to Phase 3 Next.
 - Phase 4 Now adds an offline-testable Photo Studio: system photo selection, native camera confirmation, square zoom/pan composition, metadata-free bounded JPEG preparation, style/background options, deterministic validated fixture line art, resumable photo history, Gallery revisit/delete, and project-local offline handoff through the unchanged engine.
 - Live photo transformation remains backend-gated: private temporary input/output Storage, OpenAI image transformation, post-processing, cleanup, RLS, usage limits, and cross-device history belong to Phase 4 Next.
+- Phase 5 uses RevenueCat project `proj6d64c9f8`, one `premium` entitlement, a current Premium offering, and Monthly/Yearly packages with Yearly preferred. The iOS app links a stable anonymous Supabase user ID to RevenueCat and preserves existing projects/creations after entitlement loss.
+- Generation limits are server-owned in Supabase: Free uses daily periods, Premium uses monthly periods, entitlement rows are webhook-only, and authenticated generation reservations derive tier server-side under an advisory transaction lock. The local fixture generators now require this reservation before creating history.
 
 ## Pitfalls
 

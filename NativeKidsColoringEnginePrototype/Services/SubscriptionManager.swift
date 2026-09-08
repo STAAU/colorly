@@ -16,13 +16,13 @@ enum PremiumAccessState: Equatable {
 @MainActor @Observable final class SubscriptionManager {
     static let entitlementID = "premium"
     private static let revenueCatKey = "appl_iUnPTOvYvUFrKyiGMNpGtmQyDbt"
-    private static let supabaseURL = URL(string: "https://mqpwhaxmeamlgydhkdnc.supabase.co")!
-    private static let supabaseKey = "sb_publishable_H0jv0HAfvaQHWQTjg1z5ZA_b-_32gPd"
+    static let supabaseURL = URL(string: "https://mqpwhaxmeamlgydhkdnc.supabase.co")!
+    static let supabaseKey = "sb_publishable_H0jv0HAfvaQHWQTjg1z5ZA_b-_32gPd"
     private static let cachedPremiumKey = "premium.entitlement.cached"
     private static let cachedPremiumDateKey = "premium.entitlement.verifiedAt"
     private static let offlineCacheLifetime: TimeInterval = 72 * 60 * 60
 
-    private let supabase = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+    let supabase = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
     var access: PremiumAccessState = .loading
     var offering: Offering?
     var isPurchasing = false

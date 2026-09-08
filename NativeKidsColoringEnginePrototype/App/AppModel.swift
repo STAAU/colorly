@@ -12,6 +12,7 @@ import UIKit
     private var generationService: any AIGenerationService
     let photoAssets = PhotoAssetRepository()
     let subscriptions = SubscriptionManager()
+    @ObservationIgnored private lazy var generationAccess = GenerationAccessService(client: subscriptions.supabase, supabaseURL: SubscriptionManager.supabaseURL, apiKey: SubscriptionManager.supabaseKey)
     var showsPaywall = false
     var paywallContext: String?
     private let photoRepository = PhotoHistoryRepository()
@@ -75,15 +76,22 @@ import UIKit
     func generate(prompt: String, complexity: GenerationComplexity) {
         let clean = String(prompt.trimmingCharacters(in: .whitespacesAndNewlines).prefix(300))
         guard !clean.isEmpty, !generationPhase.isBusy else { return }
-        let id = UUID()
-        let now = Date()
-        let draft = GeneratedPageRecord(id: id, prompt: clean, complexity: complexity, status: .queued, createdAt: now, updatedAt: now, masterPath: nil, thumbnailPath: nil, failure: nil)
-        generatedHistory.insert(draft, at: 0)
         generationPhase = .submitting
         Task {
-            try? await historyRepository.save(generatedHistory)
-            try? await historyRepository.savePending(id)
-            await completeGeneration(id: id, prompt: clean, complexity: complexity)
+            do {
+                try await generationAccess.authorize(.textAI)
+                let id = UUID()
+                let now = Date()
+                let draft = GeneratedPageRecord(id: id, prompt: clean, complexity: complexity, status: .queued, createdAt: now, updatedAt: now, masterPath: nil, thumbnailPath: nil, failure: nil)
+                generatedHistory.insert(draft, at: 0)
+                try await historyRepository.save(generatedHistory)
+                try await historyRepository.savePending(id)
+                await completeGeneration(id: id, prompt: clean, complexity: complexity)
+            } catch GenerationAccessError.limitReached {
+                generationPhase = .failed(.limitReached)
+            } catch {
+                generationPhase = .failed(.offline)
+            }
         }
     }
 
@@ -141,7 +149,25 @@ import UIKit
 
     func photoImage(for record:PhotoGenerationRecord,thumbnail:Bool)->UIImage? { photoAssets.image(path:thumbnail ? record.thumbnailPath:record.masterPath) }
     func restorePrepared(_ record:PhotoGenerationRecord)->PreparedPhoto? { guard let path=record.preparedSourcePath,let image=UIImage(contentsOfFile:path) else{return nil};return PreparedPhoto(image:image,preview:image,path:path,source:record.source) }
-    func generatePhoto(prepared:PreparedPhoto,options:PhotoGenerationOptions){guard !photoPhase.isBusy else{return};let id=UUID(),now=Date(),request=PhotoGenerationRequest(preparedSourcePath:prepared.path,source:prepared.source,options:options);photoHistory.insert(PhotoGenerationRecord(id:id,source:prepared.source,options:options,status:.uploading,createdAt:now,updatedAt:now,preparedSourcePath:prepared.path,masterPath:nil,thumbnailPath:nil,failure:nil,isHiddenFromGallery:false),at:0);photoPhase = .uploading;Task{try? await photoRepository.save(photoHistory);try? await photoRepository.setPending(id);await completePhoto(id:id,request:request)}}
+    func generatePhoto(prepared:PreparedPhoto,options:PhotoGenerationOptions) {
+        guard !photoPhase.isBusy else { return }
+        photoPhase = .uploading
+        Task {
+            do {
+                try await generationAccess.authorize(.photoAI)
+                let id = UUID(), now = Date()
+                let request = PhotoGenerationRequest(preparedSourcePath:prepared.path,source:prepared.source,options:options)
+                photoHistory.insert(PhotoGenerationRecord(id:id,source:prepared.source,options:options,status:.uploading,createdAt:now,updatedAt:now,preparedSourcePath:prepared.path,masterPath:nil,thumbnailPath:nil,failure:nil,isHiddenFromGallery:false),at:0)
+                try await photoRepository.save(photoHistory)
+                try await photoRepository.setPending(id)
+                await completePhoto(id:id,request:request)
+            } catch GenerationAccessError.limitReached {
+                photoPhase = .failed(.limitReached)
+            } catch {
+                photoPhase = .failed(.offline)
+            }
+        }
+    }
     private func completePhoto(id:UUID,request:PhotoGenerationRequest)async{photoPhase = .processing;try? await Task.sleep(for:.milliseconds(350));photoPhase = .cleaning;do{let result=try await photoService.generate(request,id:id);if let i=photoHistory.firstIndex(where:{$0.id==id}){photoHistory[i]=result}else{photoHistory.insert(result,at:0)};try await photoRepository.save(photoHistory);try await photoRepository.setPending(nil);photoPhase = .completed(id)}catch{let failure=(error as? PhotoGenerationFailure) ?? .unknown;if let i=photoHistory.firstIndex(where:{$0.id==id}){photoHistory[i].status = .failed;photoHistory[i].failure=failure;photoHistory[i].updatedAt=Date()};try? await photoRepository.save(photoHistory);try? await photoRepository.setPending(nil);photoPhase = .failed(failure)}}
     func delete(_ record: PhotoGenerationRecord) {
         if let project = project(for: record.page.id) {
