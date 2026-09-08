@@ -21,6 +21,8 @@ Prefer native Apple-like UI. Avoid web-dashboard-style components unless explici
 - Phase 1 adds 16 deterministic local vector pages, a three-tab Home/Explore/Gallery shell, persistent favorites, and one local project per page.
 - Project metadata is Codable JSON in Application Support; transparent paint and flattened grid thumbnails are separate PNG files. Undo/redo remains session-only.
 - The product UI uses an artwork-first editorial system: warm paper background, deep ink, lavender/coral/sky/mint accents, floating navigation, large imagery, and restrained native motion. Engine and canvas layers remain visually isolated from redesign work.
+- Phase 3 Now adds a dependency-injected local AI-generation vertical slice: generated-source page metadata, resumable generation state, deterministic complexity-aware fixture art, separate master/thumbnail history storage, Gallery AI Creations, and project-local line-art copies for offline resume.
+- Live AI remains backend-gated: existing Supabase + OpenAI Images, Sign in with Apple, RLS-owned generation/history, private Storage, moderation, validation, idempotency, and a server-configurable three-per-day limit belong to Phase 3 Next.
 
 ## Pitfalls
 

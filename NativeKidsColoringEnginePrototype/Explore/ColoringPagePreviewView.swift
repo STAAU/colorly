@@ -38,7 +38,8 @@ struct EditorLoaderView: View {
         }.task {
             let paint = await model.storage.paint(for: project)
             guard viewModel == nil else { return }
-            let vm = ColoringViewModel(asset: model.artwork.asset(for: page), project: project, restoredPaint: paint, appModel: model)
+            guard let asset = await model.asset(for: page, project: project) else { return }
+            let vm = ColoringViewModel(asset: asset, project: project, restoredPaint: paint, appModel: model)
             viewModel = vm; model.activeEditor = vm
         }.onDisappear { model.activeEditor = nil }
     }

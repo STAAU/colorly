@@ -17,6 +17,11 @@ actor ProjectStorageService {
 
     func paint(for project: ColoringProject) -> Data? { try? Data(contentsOf: root.appendingPathComponent(project.paintPath)) }
     func thumbnail(for project: ColoringProject) -> Data? { try? Data(contentsOf: root.appendingPathComponent(project.thumbnailPath)) }
+    func lineArt(for project: ColoringProject) -> Data? { try? Data(contentsOf: root.appendingPathComponent("\(project.id)-lineart.png")) }
+    func saveLineArt(_ data: Data, for project: ColoringProject) throws {
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        try data.write(to: root.appendingPathComponent("\(project.id)-lineart.png"), options: .atomic)
+    }
 
     func save(project: ColoringProject, paint: Data, thumbnail: Data, allProjects: [ColoringProject]) throws {
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)

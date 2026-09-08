@@ -7,6 +7,11 @@ extension Color {
     static let artCoral = Color(red: 0.96, green: 0.39, blue: 0.37)
     static let artSky = Color(red: 0.36, green: 0.68, blue: 0.91)
     static let artMint = Color(red: 0.39, green: 0.76, blue: 0.62)
+    static let aiSky = Color(red: 0.41, green: 0.82, blue: 0.91)
+    static let aiMint = Color(red: 0.65, green: 0.86, blue: 0.85)
+    static let aiCream = Color(red: 0.88, green: 0.89, blue: 0.80)
+    static let aiOrange = Color(red: 0.95, green: 0.53, blue: 0.19)
+    static let aiEmber = Color(red: 0.98, green: 0.41, blue: 0.00)
 
     init(light: UIColor, dark: UIColor) {
         self.init(uiColor: UIColor { $0.userInterfaceStyle == .dark ? dark : light })

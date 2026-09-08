@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @Environment(AppModel.self) private var model
     @State private var resume: ColoringProject?
+    @State private var showsCreate = false
 
     private var featured: ColoringPage? { model.content.pages.first(where: \.isFeatured) ?? model.content.pages.first }
     private var activeProjects: [ColoringProject] { Array(model.projects.filter { $0.status == .inProgress }.sorted { $0.updatedAt > $1.updatedAt }.prefix(6)) }
@@ -12,6 +13,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 34) {
                     EditorialHeader(eyebrow: "Your creative space", title: "Color something wonderful")
+                    createHero
                     if let featured { hero(featured) }
                     continueSection
                     categorySection
@@ -26,8 +28,19 @@ struct HomeView: View {
             .navigationDestination(for: ColoringCategory.self) { CategoryView(category: $0) }
         }
         .fullScreenCover(item: $resume) { project in
-            if let page = model.content.page(id: project.pageID) { EditorLoaderView(page: page, project: project) }
+            if let page = model.page(id: project.pageID) { EditorLoaderView(page: page, project: project) }
         }
+        .sheet(isPresented: $showsCreate) { CreateView() }
+    }
+
+    private var createHero: some View {
+        Button { showsCreate = true } label: {
+            HStack(spacing: 18) {
+                Image(systemName: "wand.and.stars").font(.system(size: 34, weight: .semibold))
+                VStack(alignment: .leading, spacing: 4) { Text("Create with AI").font(.title2.bold()); Text("Dream it. Then color it.").foregroundStyle(.white.opacity(0.82)) }
+                Spacer(); Image(systemName: "arrow.right.circle.fill").font(.title)
+            }.padding(22).foregroundStyle(.white).background(LinearGradient(colors: [Color.artCoral, Color.artLavender], startPoint: .leading, endPoint: .trailing), in: RoundedRectangle(cornerRadius: 26))
+        }.buttonStyle(PressScaleStyle()).accessibilityHint("Opens the coloring page creator")
     }
 
     private func hero(_ page: ColoringPage) -> some View {
