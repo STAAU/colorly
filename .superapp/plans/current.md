@@ -1,118 +1,141 @@
 ---
-title: Phase 0 Native Coloring Engine Prototype
+title: Phase 1 Product Shell and Local Coloring Library
 status: approved
-updatedAt: 2026-09-08T14:40:35.420Z
-approvedAt: 2026-09-08T14:40:35.420Z
+updatedAt: 2026-09-08T15:18:47.581Z
+approvedAt: 2026-09-08T15:18:47.581Z
 proposal:
-  messageId: chm_01m20q44p2esq9xw7s5gkyjt2m
-  toolCallId: call_8qZdkbQ8IeM7Qz62fBOZSBAJ
+  messageId: chm_01m20sfbywenc8k8nw0tccgwbf
+  toolCallId: call_DBT5sLro1acTVm1GRMx8TuNu
 ---
 ## Now
 
-**User-facing outcome:** A child can open one native coloring screen, color a built-in cat with precise region fills or freehand strokes, erase only their paint, navigate the page with zoom and pan, undo or redo up to 25 edits, reset after confirmation, and save a crisp flattened result to Photos. The build stops at this Phase 0 engine prototype.
+**User-facing outcome:** The app launches into a polished three-tab product shell where a child can browse a bundled coloring library, preview and favorite pages, start or resume multiple independent coloring projects, use the unchanged Phase 0 editor, leave safely, reopen the app later with exact paint restored, and organize work as In Progress or Finished—all locally, with no account or backend.
 
 ### Confirmed product decisions
 
-- Native Swift/SwiftUI app using Apple frameworks only; no web or cross-platform layer.
-- One screen and one built-in 1024×1024 black-and-white cat page designed specifically for region-fill testing.
-- Fill correctness, canvas responsiveness, outline preservation, and touch-coordinate accuracy take priority over decoration.
-- Tools: Fill, Brush, Eraser, Undo, Redo, Reset, and Save.
-- Brush and eraser each have Small, Medium, and Large sizes.
-- Palette has 11 large swatches: red, orange, yellow, green, cyan, blue, purple, pink, brown, black, and light gray.
-- One-finger or Apple Pencil input colors the page; two-finger gestures navigate it.
-- Native Photos add-only permission and a user-friendly denied/error state are required.
-- iPhone and iPad layouts are supported, including reasonable landscape behavior.
-- Visual tone is bright, clean, modern, child-friendly, and restrained rather than decorative or toy-like.
-- No backend, accounts, AI, subscriptions, content library, onboarding, social features, or other Phase 1 work.
+- Preserve the proven Phase 0 fill, brush, eraser, palette, brush sizes, history, reset, zoom/pan, Pencil, layered rendering, Photos export, and adaptive editor behavior.
+- Use native Swift/SwiftUI navigation with three bottom tabs: Home, Explore, and Gallery.
+- Home includes featured pages, categories, recent unfinished projects, and favorites.
+- Explore includes local search, categories, all pages, and a lightweight difficulty filter.
+- Category results and library cards use responsive grids: two columns on iPhone and wider adaptive grids on iPad.
+- A lightweight page preview provides a large image, title, difficulty, favorite control, and Start/Continue action before opening a new library page; Continue and Gallery cards resume directly.
+- The content model includes stable IDs, category, difficulty, premium/featured flags, and source/thumbnail references suitable for later cloud mapping.
+- Projects auto-save locally after meaningful edits, when leaving the editor, and when the app backgrounds; large binary paint data does not go into UserDefaults.
+- Favorites persist locally without an account.
+- Premium is visual metadata only. Every bundled page remains accessible.
+- No Supabase, Cloud, accounts, AI, RevenueCat, paywall, purchases, social features, or Phase 2 work.
 
 ### Assumptions
 
-- Phase 0 keeps one active editing session in memory. The persistent output is the user’s explicit flattened Photos save; editable projects and a local gallery remain later work.
-- Filling an already painted region recolors the complete original line-art region. The fixed line-art boundary map—not existing brush color—is the source of truth.
-- Reset clears the paint layer and its undo/redo history after confirmation; Save does not alter history.
-- Background outside the cat may also be colored as one page-bounded region.
-- The chrome uses an off-white canvas surround, white controls, and a friendly blue selection accent; the saturated coloring palette remains the dominant color.
+- Phase 1 ships 16 local pages across the requested categories: Cat, Dog, Panda, Fox, T-Rex, Triceratops, Car, Fire Truck, Rocket, Astronaut, Planet, Fish, Turtle, Dragon, Unicorn, and Cupcake. The page definitions remain editable seed data.
+- One local project is maintained per coloring page in Phase 1. Starting a page with an existing project offers Continue and resumes it rather than silently replacing it.
+- Paint is persisted as a lossless transparent PNG at the source page resolution; project metadata is Codable JSON and gallery thumbnails are small flattened images. This preserves exact pixels while keeping grids lightweight.
+- Undo/redo history remains an in-memory editing-session feature. The paint resumes exactly after relaunch, but the previous session’s undo stack does not.
+- Tapping Done saves immediately, marks the project Finished, and returns to Gallery. Reopening and editing a finished project changes it back to In Progress.
+- Photos export remains a separate explicit action; automatic project saving never requests Photos permission.
 
 ### Scope and interaction
 
-- Keep the canvas as the visual focus. On compact iPhones, place history/export actions in a concise top bar and tools, size choices, and a horizontally scrollable palette in a bottom control deck. On iPad/regular width, constrain controls to a compact rail/deck rather than stretching them across the display.
-- Use fixed, large tap targets, SF Symbols plus short labels, an obvious selected-tool state, disabled Undo/Redo states, and no hidden menus.
-- Fit the complete square page at minimum zoom and allow approximately 5× magnification relative to fit. Center the page when it is smaller than the viewport and clamp scrolling so it cannot be lost off-screen.
-- Fill is a single tap. Brush and eraser use one direct touch or Apple Pencil, including coalesced native touch samples for smooth rounded strokes. The scroll view’s pan requires two fingers, while pinch remains a two-finger gesture, preventing routine drawing/navigation conflicts.
-- A native confirmation dialog protects Reset. Save reports success, denial, or failure without crashing.
+- Home opens by default. Each tab owns a native `NavigationStack`, while detail, category, and coloring destinations stay shallow and predictable.
+- New content cards open a visual preview. Existing project cards bypass preview and resume the exact saved project.
+- Cards use large rounded artwork thumbnails, concise titles, visible heart controls, and a small premium badge where applicable. Premium badges never block taps.
+- Home sections are omitted or replaced by concise friendly empty states when there is no content. Gallery clearly separates In Progress and Finished.
+- The editor gains page-aware title/status behavior and a Done action without changing canvas gestures or pixel-editing behavior. The tab bar is hidden while coloring so the canvas retains the Phase 0 space and focus.
+- Auto-save is triggered only at action boundaries—fill completion, stroke completion, undo, redo, reset, Done, editor departure, and backgrounding—and is debounced during active use.
 
 ### Implementation steps
 
-1. **Configure the native targets and permissions**
-   - Update `project.yml`, the XcodeGen source of truth, rather than the generated `.xcodeproj`.
-   - Change `TARGETED_DEVICE_FAMILY` from iPhone-only to iPhone and iPad while preserving iOS 17 and Swift 6.
-   - Add `NSPhotoLibraryAddUsageDescription` for add-only Photos access, retain the declared phone/tablet orientations, and regenerate the project after source work is complete.
+1. **Introduce the app-level shell and dependency ownership**
+   - Replace the direct `ColoringScreen()` launch in `App/NativeKidsColoringEnginePrototypeApp.swift` with `App/AppRootView.swift` and `App/MainTabView.swift`.
+   - Add one main-actor `AppModel` that owns navigation-facing repository state and long-lived service instances; inject it through SwiftUI environment rather than using global singletons.
+   - Give Home, Explore, and Gallery independent native navigation stacks and typed destinations for category, page preview, and project editor. Preserve each tab’s position when switching tabs.
+   - Observe `scenePhase` at the root and ask the active editor/project coordinator to flush pending work when the app becomes inactive or backgrounds.
 
-2. **Create the app shell and explicit state model**
-   - Add `App/NativeKidsColoringEnginePrototypeApp.swift` as the entry point and `Coloring/ColoringScreen.swift` as the only product screen.
-   - Add `Coloring/ColoringViewModel.swift` as a main-actor observable coordinator for selected tool, selected RGBA color, brush size, processing state, save/reset presentation, and history availability. Keep per-touch pixel updates outside SwiftUI observation so strokes do not invalidate the entire screen.
-   - Add focused models such as `Models/ColoringTool.swift`, `Models/BrushSize.swift`, `Models/PaletteColor.swift`, `Models/ColoringPage.swift`, and `Models/DrawingAction.swift`. Engine colors use stable RGBA values rather than depending on SwiftUI `Color`.
+2. **Separate catalog metadata from the existing engine’s runtime image input**
+   - Expand `Models/ColoringPage.swift` into a stable, Codable, identifiable catalog model with `id`, `title`, `categoryID`, source key, thumbnail key, `difficulty`, `isPremium`, `isFeatured`, and sort order.
+   - Add `Models/ColoringCategory.swift`, `Models/ColoringDifficulty.swift`, `Models/ColoringProject.swift`, and `Models/ProjectStatus.swift` using stable string IDs and cloud-friendly scalar fields.
+   - Introduce a small runtime `ColoringPageAsset` value containing the selected page metadata, pixel size, and immutable `CGImage`. Keep `ColoringDocument` dependent on this runtime asset contract rather than on catalog/storage concerns.
+   - Update hard-coded Cat-specific save/reset copy to use the current page title.
 
-3. **Build a reusable test page and layered document**
-   - Add `Sample/SampleCatPageRenderer.swift` to draw a canonical 1024×1024 page with Core Graphics paths: white background; thick, solid black contours; centered head, separate ears, body, paws, tail, and face details; large closed interiors; no gray, shading, texture, or preexisting color.
-   - Represent the page independently from the screen through a `ColoringPage` contract containing identity, canvas size, immutable line-art image, and boundary information. This lets later remote or generated pages enter the same engine without changing the editor.
-   - Add `Engine/ColoringDocument.swift` and `Engine/PaintSurface.swift` for a transparent mutable RGBA paint layer. Render in strict order: opaque white background, user paint, then immutable line art. Brush, eraser, fill, reset, and history mutate only the paint surface, so black outlines cannot be erased or covered.
+3. **Build the bundled content repository and reusable local artwork provider**
+   - Add `Data/LocalContentRepository.swift` behind a read-only `ContentRepository` protocol and put the eight category records plus 16 page records in `Data/SampleContent.swift`; views query the repository instead of embedding source names.
+   - Generalize `Sample/SampleCatPageRenderer.swift` into a local line-art provider with page-specific vector recipes rendered at canonical 1024×1024 resolution. Keep every recipe white/transparent with pure black, thick, closed contours and large fillable regions compatible with the existing boundary segmentation.
+   - Render card previews directly at thumbnail resolution from the same local vector recipes and cache only bounded thumbnail images with `NSCache`. Resolve a full-resolution line-art image only when opening an editor, so library grids never retain every 1024×1024 page.
+   - Keep the Phase 0 Cat recipe unchanged in geometry so its known fill test remains valid.
 
-4. **Implement robust region segmentation and fill**
-   - Add `Engine/BoundaryMaskBuilder.swift` to derive a binary barrier mask from line-art alpha/luminance. Include low-alpha antialiased edge pixels and apply a small morphological close/dilation so tiny edge gaps cannot become leaks.
-   - Add `Engine/FloodFillEngine.swift` as a UI-independent native service. On page load, use an iterative scanline/connected-component pass on a serial background worker to label all non-boundary regions and store compact row spans plus bounds for each region. Avoid recursive or per-pixel object allocation.
-   - A fill tap converts the page coordinate to an integer pixel, looks up the region, updates only that region’s spans on a working paint surface, records one history transaction, and commits the result atomically. Expensive segmentation, fill preparation, and compression do not block SwiftUI’s main thread; concurrent edits are serialized to prevent surface races.
-   - Ignore taps on boundary pixels and preserve the prior document if work is cancelled or fails. Cache region data for the page so subsequent fills are proportional to the selected region and do not repeatedly scan the full image.
+4. **Adapt the existing editor to accept any selected page without replacing its engine**
+   - Change `Coloring/ColoringScreen.swift` and `Coloring/ColoringViewModel.swift` to initialize from a selected `ColoringPageAsset`, optional existing project, and injected persistence services instead of constructing the Phase 0 Cat internally.
+   - Leave `Engine/FloodFillEngine.swift`, `Engine/BrushEngine.swift`, history logic, UIKit touch handling, and zoom behavior intact. Continue creating boundary segmentation from each selected immutable line-art image when its editor opens.
+   - Extend `Engine/PaintSurface.swift` and `Engine/ColoringDocument.swift` with dimension-validated import/export of the transparent paint layer. Restoring paint must not alter the immutable source line art; display and Photos export remain white background → restored/user paint → source line art.
+   - Add lightweight document signals for meaningful mutations and whether any paint exists. Use these for auto-save/status updates without publishing per-touch pixel state through SwiftUI.
+   - Add a page-aware editor title and Done action while retaining Reset and Photos Save. Hide the tab bar during editing and preserve all compact/regular Phase 0 layouts.
 
-5. **Implement brush, eraser, and unified editing history**
-   - Add `Engine/BrushEngine.swift` to interpolate between coalesced touch samples and rasterize round-capped segments at logical canvas coordinates. Brush uses source-over color; eraser clears alpha from the same paint surface, revealing white while leaving the separate line-art layer untouched.
-   - Journal modified pixel tiles once per gesture/fill and finalize a single `DrawingAction` when the operation ends. Store compressed before/after tile patches using Apple’s Compression framework so undo/redo is exact for fills, brush strokes, and eraser strokes without retaining whole-image snapshots for every action.
-   - Add `Engine/HistoryManager.swift` with separate undo/redo stacks, a 25-action limit, and a defensive memory budget that evicts the oldest transactions. A new edit clears redo. Reset clears both stacks only after confirmation.
-   - Keep the paint surface and mutable history behind one serialized engine boundary. Publish only lightweight UI state and display invalidations.
+5. **Implement durable, efficient local project persistence**
+   - Add `Services/ProjectStorageService.swift` as an actor-backed FileManager/Codable store under Application Support. Persist an atomically replaced project index plus per-project transparent paint PNG and thumbnail files using stable relative paths.
+   - Add `Services/ThumbnailService.swift` to create a small flattened project thumbnail from white background, paint, and immutable line art after an autosave. Never decode full-resolution paint in Home or Gallery cards.
+   - On Start, create project metadata immediately. On resume, load and dimension-check the project’s paint PNG before constructing the document. A missing/corrupt paint file falls back safely to an empty layer while surfacing no crash.
+   - Debounce saves after edit completion, coalesce overlapping requests per project, and force-flush on navigation dismissal, scene background, Done, and app termination opportunities. Write temporary files and atomically replace destinations so interrupted saves do not corrupt the last good project.
+   - Update `createdAt`, `updatedAt`, status, paint path, and thumbnail path only after successful persistence. Keep only the active project’s full-resolution paint in memory.
 
-6. **Create the native canvas and gesture bridge**
-   - Add `Canvas/ColoringCanvasRepresentable.swift` to bridge SwiftUI to a purpose-built UIKit canvas, and split the UIKit implementation into `Canvas/ColoringScrollView.swift` and `Canvas/ColoringPageView.swift`.
-   - Use `UIScrollView` for native pinch/zoom, bounded two-finger pan, centering insets, and rotation/layout updates. The page view remains in canonical 1024×1024 coordinates; touch locations requested in that view map directly to image pixels at every zoom level.
-   - Give drawing recognizers exactly one touch and permit direct touch plus stylus input. Feed coalesced `UITouch` samples to the brush engine; cancel or finish a stroke cleanly when a two-finger navigation gesture takes over.
-   - Draw only invalidated dirty regions while stroking and composite immutable snapshots/layers without causing SwiftUI body refreshes. Preserve the relative zoom and visible page center across layout changes where possible.
+6. **Persist and expose favorites cleanly**
+   - Add `Services/FavoritesService.swift` with a small Codable set of page IDs stored locally; expose idempotent toggle/query operations and validate IDs against the local repository.
+   - Wire the same favorite state to Home, Explore, Category, and Preview cards so hearts update consistently and remain set after relaunch.
+   - Show the requested favorites empty state when no pages are saved.
 
-7. **Assemble child-friendly controls and responsive layouts**
-   - Add `Components/ColoringToolbar.swift`, `Components/ColorPalette.swift`, `Components/BrushSizePicker.swift`, and `Components/CanvasStatusOverlay.swift`.
-   - Provide at least 44×44-point targets, selected rings/backgrounds, concise accessibility labels, and clear disabled states. Show the size picker only for Brush or Eraser without shifting the canvas unpredictably.
-   - Use adaptive SwiftUI layout based on available size class and geometry: compact bottom controls on iPhone; a bounded control area and larger centered canvas on iPad/landscape. Avoid dashboard cards and professional design-tool density.
+7. **Build reusable library components and preview flow**
+   - Add `Explore/ColoringPageCard.swift` as the shared artwork card with cached thumbnail, title, heart button, accessibility labels, and non-blocking premium badge.
+   - Add `Explore/ColoringPagePreviewView.swift` with a large local preview, difficulty label, favorite action, and Start Coloring or Continue Coloring button based on project existence.
+   - Keep card hit areas and nested favorite buttons unambiguous so tapping the heart does not also navigate.
 
-8. **Flatten and save through native Photos APIs**
-   - Add `Services/PhotoSaveService.swift` using `PHPhotoLibrary.requestAuthorization(for: .addOnly)` and `PHPhotoLibrary.performChanges`.
-   - Add an engine export method that creates an sRGB flattened image at the page’s native resolution in the same guaranteed order: white, paint, crisp line art.
-   - Request permission only after Save is tapped. Surface limited/authorized success, denied/restricted guidance, and unexpected save failure through a simple native alert; never mutate the editable document during export.
+8. **Build Home around visual, live local data**
+   - Add `Home/HomeView.swift`, `Home/FeaturedSection.swift`, `Home/CategorySection.swift`, `Home/ContinueColoringSection.swift`, and `Home/FavoritesSection.swift`.
+   - Use horizontally scrolling featured/favorite/project cards and compact category tiles. Sort Continue Coloring by `updatedAt` descending and limit it to recent In Progress projects.
+   - Refresh sections from the shared app model after favorite changes, autosaves, status changes, or returning from the editor; no fake loading UI is shown for bundled content.
+
+9. **Build Explore, search, categories, and adaptive grids**
+   - Add `Explore/ExploreView.swift`, `Explore/CategoryView.swift`, and `Explore/SearchResultsView.swift`.
+   - Use native `.searchable` title matching with trimmed, case/diacritic-insensitive local filtering and immediate results. Display “No coloring pages found.” only for a real empty query result.
+   - Provide simple All/Easy/Medium/Detailed filter chips or a compact menu without turning Explore into a dashboard.
+   - Use an adaptive `LazyVGrid` whose minimum card width yields two columns on iPhone and approximately three to five on iPad. Category cards navigate to the same shared grid/card components.
+
+10. **Build the local Gallery and project lifecycle**
+    - Add `Gallery/GalleryView.swift` and `Gallery/ProjectCard.swift` using persisted thumbnail paths, page titles resolved through the content repository, and friendly relative last-edited dates.
+    - Present separate In Progress and Finished sections with the requested empty state: “Your colorful creations will appear here.”
+    - Project cards resume directly. Done saves first, changes status to Finished, refreshes Gallery/Home, and dismisses the editor. Any later pixel edit marks a reopened finished project In Progress and updates its thumbnail/date.
+
+11. **Polish adaptive presentation without touching engine behavior**
+    - Use system backgrounds, restrained soft surfaces, one friendly blue accent, large native typography, SF Symbols, and artwork-led cards. Avoid excessive gradients, shadows, or clip-art chrome.
+    - Keep minimum 44×44-point actions, safe-area-aware tab/navigation bars, Dynamic Type-friendly labels, and accessibility descriptions for page title, difficulty, favorite, premium indicator, project status, and dates.
+    - Constrain horizontal card widths on iPad and let grids gain columns rather than stretching phone cards. Verify the existing side-deck editor and Apple Pencil path remain unchanged.
 
 ### Verification
 
-- Regenerate from `project.yml`, then build and run the app with the selected iPhone simulator target. Also build an iPad simulator destination and check portrait and landscape layouts.
-- Execute the 13 requested manual tests in order: isolated body fill, ear boundary containment, independent multi-region fills, smooth brush, outline preservation, eraser behavior, three-step undo, three-step redo, zoom, pan, drawing while zoomed, Photos save, and confirmed reset.
-- Add focused manual edge checks: tap directly on a black line; rapidly request fills; begin drawing then add a second finger; draw at page edges; rotate while zoomed; deny Photos access; fill after brushing; erase part of a filled region; exhaust more than 25 edits; and verify redo clears after a new edit.
-- Inspect a saved image at full resolution to confirm a white background, exact paint placement, and the immutable black line layer on top.
-- Use Xcode’s Time Profiler and memory gauges during repeated full-background fills, long strokes, zooming, and 25 history actions. Confirm there is no visible main-thread freeze, runaway history growth, or full-screen SwiftUI redraw per touch. Automated tests are intentionally not part of this MVP.
-- Validate final touch feel and Apple Pencil behavior on physical iPhone/iPad hardware when available; simulator checks cannot fully prove stylus latency or real multi-touch ergonomics.
+- Regenerate the Xcode project from `project.yml` only if source/config changes require it, then build the app for both an iPhone simulator and an iPad simulator.
+- Execute all 15 requested manual tests: Home launch, three-tab navigation, Animals category, Cat then Rocket editor reuse, fill, brush, 5× zoom/two-finger pan, leave/autosave, terminate/relaunch persistence, exact resume, Finished status movement, favorite persistence, Dragon search, independent projects, and iPad grid/Pencil behavior.
+- Add persistence edge checks: background immediately after a stroke; rapidly perform several actions before debounce fires; leave during a pending save; relaunch after force-quit; reopen a finished project and edit; reset then leave; corrupt or remove one paint file; and verify other projects still load.
+- Compare the transparent paint pixels before leaving and after resume, then flatten both with the same line art to confirm exact restoration and immutable outlines.
+- Confirm grid screens load thumbnails rather than full-resolution paint files, memory remains bounded while scrolling all 16 pages/projects, and only the active editor holds its full paint surface and segmentation.
+- Re-run the complete Phase 0 interaction suite on Cat and at least one non-Cat page, including fill boundaries, brush, eraser, undo/redo, reset, max zoom, panning, zoomed coordinate accuracy, Apple Pencil where hardware is available, and Photos export.
+- Automated tests are intentionally outside this MVP; verification is build plus focused manual device/simulator checks.
 
 ### Material risks and mitigations
 
-- **Boundary leakage:** Antialiased or imperfect contours can connect regions. Use a dedicated closed vector test page, conservative barrier-mask construction, and morphological gap closing; line taps perform no fill.
-- **History memory:** Full 2048×2048 snapshots would grow quickly. Use changed-tile deltas, compression, an action-count limit, and a byte budget.
-- **Touch/zoom offsets:** Independent SwiftUI transforms can drift. Keep navigation and touch conversion in one UIKit scroll/page coordinate system and test after rotation and at maximum zoom.
-- **Input races:** Background fills and live strokes could mutate one buffer simultaneously. Serialize document operations and commit background-prepared fills atomically.
-- **Outline degradation:** Flattening paint into the source art could soften or erase lines. Keep immutable line art as a separate top layer for both display and export.
-- **Swift 6 concurrency:** Mutable Core Graphics buffers are not freely sendable. Confine each mutable surface to its engine boundary and transfer immutable images or owned data copies between execution contexts.
+- **Engine regression during model refactor:** Keep `ColoringDocument`, raster tools, touch bridge, and layer order intact; adapt only the page input and paint import/export seams, then rerun Phase 0 tests on multiple assets.
+- **Invalid local artwork boundaries:** Derive all pages from closed vector recipes and validate representative fills in every recipe before shipping the sample library.
+- **Interrupted or excessive saves:** Save only at action boundaries with debounce/coalescing, write atomically, and force-flush on navigation/background transitions.
+- **Resume mismatch:** Persist the raw transparent paint layer losslessly with page ID and dimensions, reject incompatible files, and never persist a flattened image as editable state.
+- **Memory pressure:** Cache bounded low-resolution thumbnails, lazily resolve full page assets, and release editor documents/segmentation when navigation closes.
+- **Metadata/file drift:** Keep relative paths in project records, update metadata only after file writes succeed, and tolerate individual missing files without invalidating the full project index.
+- **Favorite/project UI staleness:** Use one shared observable app model fed by repository/service results so every tab refreshes from the same local source of truth.
+- **Swift 6 isolation:** Keep Core Graphics document mutations on MainActor and filesystem encoding/writes inside the storage actor; transfer owned `Data` snapshots rather than mutable CGContext state.
 
 ## Next
 
-No next build is included in this request. Stop after the Phase 0 prototype and its manual verification; any Phase 1 scope must be explicitly selected and approved before implementation.
+No additional build is included in this request. Stop after the complete local Phase 1 experience and its verification; do not begin Phase 2 automatically.
 
 ## Later
 
-- Editable project persistence, local/cloud galleries, timelapse, expanded palettes, premium tools, and optional “Stay Inside Lines” brush assistance.
-- Remote coloring libraries, categories, difficulty levels, hundreds of pages, daily coloring, streaks, and challenges.
-- Cloud/backend enablement, accounts, authentication, cross-device sync, secure storage, and server logic.
-- AI-generated pages, photo-to-coloring conversion, and secret-holding external AI integrations.
-- RevenueCat, subscriptions, paywalls, and other monetization.
-- Onboarding, notifications, profiles, community, likes, comments, social sharing systems, and ads.
+- Superapp Cloud enablement, user accounts, authentication, cloud gallery, cross-device sync, remote content, and server logic.
+- AI generation, photo-to-coloring, OpenAI/Gemini or other secret-holding integrations.
+- RevenueCat, subscriptions, paywalls, purchases, and premium access enforcement.
+- Community, shared likes, comments, public profiles, social systems, notifications, daily challenges, streaks, ads, and admin tooling.

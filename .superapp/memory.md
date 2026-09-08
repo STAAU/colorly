@@ -18,7 +18,10 @@ Prefer native Apple-like UI. Avoid web-dashboard-style components unless explici
 - Phase 0 uses a fixed 1024×1024 Core Graphics cat page, a dilated immutable boundary mask, cached connected-component regions, and one transparent RGBA paint surface under immutable line art.
 - All paint mutations and UI state are MainActor-confined. Undo/redo stores compressed exact 64×64 before/after tile patches with a 25-action and 48 MB budget.
 - UIKit owns canvas touch handling and UIScrollView navigation; one touch/Pencil edits while pan requires two touches. Photos permission is add-only and requested only by Save.
+- Phase 1 adds 16 deterministic local vector pages, a three-tab Home/Explore/Gallery shell, persistent favorites, and one local project per page.
+- Project metadata is Codable JSON in Application Support; transparent paint and flattened grid thumbnails are separate PNG files. Undo/redo remains session-only.
 
 ## Pitfalls
 
 - `project.yml` is the source of truth; regenerate with XcodeGen rather than editing `project.pbxproj`.
+- Never derive a page recipe from Swift `hashValue`; it changes between launches and would misalign persisted paint. Page IDs map to deterministic artwork recipes.

@@ -2,9 +2,6 @@ import SwiftUI
 
 @main
 struct NativeKidsColoringEnginePrototypeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ColoringScreen()
-        }
-    }
+    @State private var model = AppModel()
+    var body: some Scene { WindowGroup { AppRootView().environment(model) } }
 }

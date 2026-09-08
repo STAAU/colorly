@@ -3,7 +3,7 @@ import UIKit
 
 @MainActor
 final class ColoringDocument {
-    let page: ColoringPage
+    let page: ColoringPageAsset
 
     var onInvalidate: ((CGRect) -> Void)?
     var onHistoryChange: (() -> Void)?
@@ -13,9 +13,17 @@ final class ColoringDocument {
     private var segmentation: RegionSegmentation?
     private var activeStroke: ActiveStroke?
 
-    init(page: ColoringPage) {
+    init(page: ColoringPageAsset, restoredPaint: Data? = nil) {
         self.page = page
         self.paintSurface = PaintSurface(width: page.width, height: page.height)
+        if let restoredPaint, let image = UIImage(data: restoredPaint)?.cgImage {
+            _ = paintSurface.importImage(image)
+        }
+    }
+
+    func paintPNGData() -> Data? {
+        guard let image = paintSurface.image() else { return nil }
+        return UIImage(cgImage: image).pngData()
     }
 
     var canUndo: Bool { history.canUndo }

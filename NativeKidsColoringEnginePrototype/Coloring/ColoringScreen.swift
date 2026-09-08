@@ -3,8 +3,11 @@ import UIKit
 
 @MainActor
 struct ColoringScreen: View {
-    @State private var viewModel = ColoringViewModel()
+    @State private var viewModel: ColoringViewModel
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.dismiss) private var dismiss
+
+    init(viewModel: ColoringViewModel) { _viewModel = State(initialValue: viewModel) }
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -41,13 +44,17 @@ struct ColoringScreen: View {
             .background(Color(uiColor: .systemGroupedBackground))
         }
         .ignoresSafeArea(.keyboard)
+        .navigationTitle(viewModel.page.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Done") { viewModel.finish(); dismiss() }.fontWeight(.bold) } }
+        .onDisappear { viewModel.flushSave() }
         .alert("Start over?", isPresented: $viewModel.isResetConfirmationPresented) {
             Button("Cancel", role: .cancel) {}
             Button("Clear My Colors", role: .destructive) {
                 viewModel.confirmReset()
             }
         } message: {
-            Text("This clears all paint and the undo history. The black cat lines stay in place.")
+            Text("This clears all paint and the undo history. The black \(viewModel.page.title.lowercased()) lines stay in place.")
         }
         .alert(item: $viewModel.saveAlert) { alert in
             if case .denied = alert {
@@ -75,7 +82,7 @@ struct ColoringScreen: View {
                 color: viewModel.selectedColor.rgba,
                 brushSize: viewModel.brushSize,
                 fillEnabled: !viewModel.isPreparingRegions,
-                onEditFinished: viewModel.refreshHistoryState
+                onEditFinished: viewModel.editFinished
             )
             CanvasStatusOverlay(isPreparing: viewModel.isPreparingRegions)
         }

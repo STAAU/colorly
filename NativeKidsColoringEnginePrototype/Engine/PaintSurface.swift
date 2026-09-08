@@ -52,6 +52,17 @@ final class PaintSurface {
         return context.makeImage()
     }
 
+    func importImage(_ image: CGImage) -> Bool {
+        guard image.width == width, image.height == height else { return false }
+        clear()
+        context.saveGState()
+        context.setBlendMode(.copy)
+        context.interpolationQuality = .none
+        context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        context.restoreGState()
+        return true
+    }
+
     func paintSegment(from start: CGPoint, to end: CGPoint, diameter: CGFloat, color: RGBAColor, erasing: Bool) {
         context.saveGState()
         context.setLineWidth(diameter)
