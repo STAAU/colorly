@@ -17,36 +17,37 @@ struct ColoringScreen: View {
 
             VStack(spacing: 0) {
                 ColoringToolbar(
+                    pageTitle: viewModel.page.title,
                     canUndo: viewModel.canUndo,
                     canRedo: viewModel.canRedo,
                     isSaving: viewModel.isSaving,
                     undo: viewModel.undo,
                     redo: viewModel.redo,
                     reset: { viewModel.isResetConfirmationPresented = true },
-                    save: viewModel.save
+                    save: viewModel.save,
+                    done: { viewModel.finish(); dismiss() }
                 )
 
                 if usesSideDeck {
                     HStack(spacing: 0) {
                         canvas
                         controlDeck
-                            .frame(width: min(290, geometry.size.width * 0.34))
-                            .background(Color(uiColor: .secondarySystemBackground))
+                            .frame(width: min(300, geometry.size.width * 0.34))
+                            .padding(10)
                     }
                 } else {
                     VStack(spacing: 0) {
                         canvas
                         controlDeck
-                            .background(Color(uiColor: .secondarySystemBackground))
+                            .padding(.horizontal, 10)
+                            .padding(.bottom, 8)
                     }
                 }
             }
             .background(Color(uiColor: .systemGroupedBackground))
         }
         .ignoresSafeArea(.keyboard)
-        .navigationTitle(viewModel.page.title)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Done") { viewModel.finish(); dismiss() }.fontWeight(.bold) } }
+        .toolbar(.hidden, for: .navigationBar)
         .onDisappear { viewModel.flushSave() }
         .alert("Start over?", isPresented: $viewModel.isResetConfirmationPresented) {
             Button("Cancel", role: .cancel) {}
@@ -93,33 +94,22 @@ struct ColoringScreen: View {
 
     private var controlDeck: some View {
         VStack(spacing: 10) {
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 ForEach(ColoringTool.allCases) { tool in
-                    Button {
-                        viewModel.selectedTool = tool
-                    } label: {
-                        VStack(spacing: 4) {
-                            Image(systemName: tool.symbolName)
-                                .font(.system(size: 20, weight: .semibold))
-                            Text(tool.title)
-                                .font(.caption.weight(.bold))
-                        }
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .foregroundStyle(viewModel.selectedTool == tool ? Color.accentColor : Color.primary.opacity(0.72))
-                        .background(
-                            viewModel.selectedTool == tool ? Color.accentColor.opacity(0.15) : Color.black.opacity(0.04),
-                            in: RoundedRectangle(cornerRadius: 14)
-                        )
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 14)
-                                .stroke(viewModel.selectedTool == tool ? Color.accentColor : .clear, lineWidth: 2)
-                        }
+                    Button { viewModel.selectedTool = tool } label: {
+                        Label(tool.title, systemImage: tool.symbolName)
+                            .font(.subheadline.bold()).labelStyle(.titleAndIcon)
+                            .frame(maxWidth: .infinity, minHeight: 46)
+                            .foregroundStyle(viewModel.selectedTool == tool ? .white : Color.artInk)
+                            .background(viewModel.selectedTool == tool ? Color.artInk : .clear, in: Capsule())
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(PressScaleStyle())
                     .accessibilityLabel(tool.title)
                     .accessibilityAddTraits(viewModel.selectedTool == tool ? .isSelected : [])
                 }
             }
+            .padding(5).background(.regularMaterial, in: Capsule())
+            .overlay(Capsule().stroke(.primary.opacity(0.08)))
 
             BrushSizePicker(
                 selection: $viewModel.brushSize,
@@ -128,9 +118,10 @@ struct ColoringScreen: View {
 
             ColorPalette(selection: $viewModel.selectedColor)
         }
-        .padding(.horizontal, 12)
-        .padding(.top, 10)
-        .padding(.bottom, 8)
+        .padding(10)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 24).stroke(.primary.opacity(0.08)))
+        .shadow(color: .black.opacity(0.1), radius: 16, y: 8)
     }
 
     private func openSettings() {

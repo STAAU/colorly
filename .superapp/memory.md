@@ -20,6 +20,7 @@ Prefer native Apple-like UI. Avoid web-dashboard-style components unless explici
 - UIKit owns canvas touch handling and UIScrollView navigation; one touch/Pencil edits while pan requires two touches. Photos permission is add-only and requested only by Save.
 - Phase 1 adds 16 deterministic local vector pages, a three-tab Home/Explore/Gallery shell, persistent favorites, and one local project per page.
 - Project metadata is Codable JSON in Application Support; transparent paint and flattened grid thumbnails are separate PNG files. Undo/redo remains session-only.
+- The product UI uses an artwork-first editorial system: warm paper background, deep ink, lavender/coral/sky/mint accents, floating navigation, large imagery, and restrained native motion. Engine and canvas layers remain visually isolated from redesign work.
 
 ## Pitfalls
 

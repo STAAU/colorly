@@ -39,6 +39,7 @@
 		8C32F999A38D7F7A6C4B045B /* PhotoSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */; };
 		9485CDEA72ED735CAA9FF917 /* ThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB654C19E0F64572C60E36B /* ThumbnailService.swift */; };
 		957EDC141FBDC3F6E67570A7 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19A4C1EE8851DE09973279 /* AppRootView.swift */; };
+		9BF5C184267AF1B8A724E15E /* ArtfulStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FF643E4436BA6CC8F02916 /* ArtfulStyle.swift */; };
 		9DAC66A5336723C1CF275713 /* ColoringTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E609A05637166572FC4A8B /* ColoringTool.swift */; };
 		A06776F0ED7F72AD38CAF59D /* BrushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3A30B3FAA7FF54BF1C724 /* BrushEngine.swift */; };
 		A67E09A578D4847AD129C577 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */; };
@@ -88,6 +89,7 @@
 		BB58ABE2BE866B949B298EF4 /* LocalContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalContentRepository.swift; sourceTree = "<group>"; };
 		BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasStatusOverlay.swift; sourceTree = "<group>"; };
 		C62B2F47D1554971276FC814 /* ColoringPagePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPagePreviewView.swift; sourceTree = "<group>"; };
+		C7FF643E4436BA6CC8F02916 /* ArtfulStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtfulStyle.swift; sourceTree = "<group>"; };
 		CEBD2CDDC3D181AC9DC2E54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D70A93E09456FE6C61E711DA /* PaintSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSurface.swift; sourceTree = "<group>"; };
 		DAADA5E0C36D15E4ADF998B7 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		38E101BDEF1C2170F44273B6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C7FF643E4436BA6CC8F02916 /* ArtfulStyle.swift */,
 				24347DBE21B17DEB1B4E3C0D /* BrushSizePicker.swift */,
 				BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */,
 				8EF071743D88C72B4741AD24 /* ColoringToolbar.swift */,
@@ -334,6 +337,7 @@
 			files = (
 				1A61DB820320EA64D1DAF77F /* AppModel.swift in Sources */,
 				957EDC141FBDC3F6E67570A7 /* AppRootView.swift in Sources */,
+				9BF5C184267AF1B8A724E15E /* ArtfulStyle.swift in Sources */,
 				F7DCBA29B3FF8CAB9A2CD98F /* BoundaryMaskBuilder.swift in Sources */,
 				A06776F0ED7F72AD38CAF59D /* BrushEngine.swift in Sources */,
 				FDC1B55D86DBF812D7562080 /* BrushSize.swift in Sources */,

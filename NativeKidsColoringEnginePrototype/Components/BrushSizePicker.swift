@@ -3,56 +3,24 @@ import SwiftUI
 struct BrushSizePicker: View {
     @Binding var selection: BrushSize
     let isVisible: Bool
-
     var body: some View {
         Group {
             if isVisible {
                 HStack(spacing: 8) {
-                    Text("Size")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                    Text("Stroke").font(.caption.bold()).foregroundStyle(.secondary)
                     ForEach(BrushSize.allCases) { size in
-                        Button {
-                            selection = size
-                        } label: {
-                            HStack(spacing: 6) {
-                                Circle()
-                                    .fill(Color.primary)
-                                    .frame(width: markerDiameter(for: size), height: markerDiameter(for: size))
-                                Text(size.title)
-                                    .font(.caption.weight(.semibold))
+                        Button { selection = size } label: {
+                            ZStack {
+                                Circle().fill(selection == size ? Color.artInk : Color.primary.opacity(0.07)).frame(width: 42, height: 42)
+                                Circle().fill(selection == size ? .white : Color.artInk).frame(width: marker(size), height: marker(size))
                             }
-                            .frame(maxWidth: .infinity, minHeight: 42)
-                            .background(selection == size ? Color.accentColor.opacity(0.16) : Color.black.opacity(0.045), in: RoundedRectangle(cornerRadius: 12))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(selection == size ? Color.accentColor : .clear, lineWidth: 2)
-                            }
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("\(size.title) size")
-                        .accessibilityAddTraits(selection == size ? .isSelected : [])
+                        }.buttonStyle(PressScaleStyle()).accessibilityLabel("\(size.title) size").accessibilityAddTraits(selection == size ? .isSelected : [])
                     }
-                }
-                .frame(minHeight: 48)
+                }.frame(maxWidth: .infinity)
             } else {
-                HStack(spacing: 8) {
-                    Image(systemName: "hand.tap.fill")
-                    Text("Tap a space to fill it")
-                        .font(.subheadline.weight(.medium))
-                }
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, minHeight: 48)
-                .accessibilityElement(children: .combine)
+                Label("Tap an area to fill", systemImage: "hand.tap.fill").font(.subheadline.weight(.medium)).foregroundStyle(.secondary).frame(maxWidth: .infinity, minHeight: 42)
             }
         }
     }
-
-    private func markerDiameter(for size: BrushSize) -> CGFloat {
-        switch size {
-        case .small: 5
-        case .medium: 9
-        case .large: 14
-        }
-    }
+    private func marker(_ size: BrushSize) -> CGFloat { size == .small ? 5 : (size == .medium ? 10 : 16) }
 }

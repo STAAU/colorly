@@ -1,58 +1,51 @@
 import SwiftUI
 
 struct ColoringToolbar: View {
-    let canUndo: Bool
-    let canRedo: Bool
-    let isSaving: Bool
-    let undo: () -> Void
-    let redo: () -> Void
-    let reset: () -> Void
-    let save: () -> Void
+    let pageTitle: String
+    let canUndo: Bool, canRedo: Bool, isSaving: Bool
+    let undo: () -> Void, redo: () -> Void, reset: () -> Void, save: () -> Void, done: () -> Void
 
     var body: some View {
-        HStack(spacing: 6) {
-            ViewThatFits(in: .horizontal) {
-                Text("Color the Cat")
-                    .font(.title3.weight(.bold))
-                    .foregroundStyle(.primary)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Cat")
-                    .font(.headline.weight(.bold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-
+        HStack(spacing: 5) {
+            Text(pageTitle)
+                .font(.headline.bold())
+                .foregroundStyle(Color.artInk)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity, alignment: .leading)
             ToolbarButton(title: "Undo", symbol: "arrow.uturn.backward", enabled: canUndo, action: undo)
             ToolbarButton(title: "Redo", symbol: "arrow.uturn.forward", enabled: canRedo, action: redo)
-            ToolbarButton(title: "Reset", symbol: "arrow.counterclockwise", enabled: true, action: reset)
-            ToolbarButton(title: "Save", symbol: isSaving ? "hourglass" : "square.and.arrow.down", enabled: !isSaving, action: save)
+            Menu {
+                Button("Start Over", systemImage: "arrow.counterclockwise", role: .destructive, action: reset)
+            } label: {
+                Image(systemName: "ellipsis")
+                    .frame(width: 42, height: 42)
+                    .background(.primary.opacity(0.06), in: Circle())
+            }
+            .accessibilityLabel("More actions")
+            ToolbarButton(title: "Save", symbol: isSaving ? "hourglass" : "square.and.arrow.down", enabled: !isSaving, prominent: true, action: save)
+            Button("Done", action: done)
+                .font(.subheadline.bold())
+                .foregroundStyle(.white)
+                .padding(.horizontal, 14)
+                .frame(minHeight: 42)
+                .background(Color.artLavender, in: Capsule())
+                .buttonStyle(PressScaleStyle())
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(Color(uiColor: .secondarySystemBackground))
+        .background(.regularMaterial)
     }
 }
 
 private struct ToolbarButton: View {
-    let title: String
-    let symbol: String
-    let enabled: Bool
+    let title: String, symbol: String, enabled: Bool
+    var prominent = false
     let action: () -> Void
-
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 2) {
-                Image(systemName: symbol)
-                    .font(.system(size: 18, weight: .semibold))
-                Text(title)
-                    .font(.system(size: 9, weight: .semibold))
-            }
-            .frame(width: 45, height: 44)
-            .foregroundStyle(enabled ? Color.accentColor : Color.secondary.opacity(0.45))
-            .background(Color.black.opacity(enabled ? 0.035 : 0.018), in: RoundedRectangle(cornerRadius: 11))
-        }
-        .buttonStyle(.plain)
-        .disabled(!enabled)
-        .accessibilityLabel(title)
+            Image(systemName: symbol).font(.system(size: 17, weight: .semibold)).frame(width: 42, height: 42)
+                .foregroundStyle(prominent ? .white : Color.artInk.opacity(enabled ? 1 : 0.35))
+                .background(prominent ? Color.artInk : Color.primary.opacity(0.06), in: Circle())
+        }.buttonStyle(PressScaleStyle()).disabled(!enabled).accessibilityLabel(title)
     }
 }
