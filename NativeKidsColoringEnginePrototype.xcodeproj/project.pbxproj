@@ -7,18 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0293D8CFB011D9214774E2A7 /* ColoringViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33484297EED77AE6630EDE3 /* ColoringViewModel.swift */; };
+		170C1F0E729244A3C5977507 /* ColoringPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEB4DEB621611304B87D1A /* ColoringPageView.swift */; };
+		1D04D0669DBAD64EB594EBBF /* DrawingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03247565A2E70CF036D95103 /* DrawingAction.swift */; };
+		21A7C1B8F8EBEC7FCFEB2476 /* FloodFillEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A616CFCCE519D5BA2C712D27 /* FloodFillEngine.swift */; };
+		236644CAB277536217CDE297 /* ColoringScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D07EFA2DEB4B0247A11605 /* ColoringScrollView.swift */; };
 		23F15C855185CC82BEEC68FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB3460590304249071EE5033 /* Assets.xcassets */; };
+		477F230F2A50843132F6B61B /* NativeKidsColoringEnginePrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE01E98644F028CE93E0042 /* NativeKidsColoringEnginePrototypeApp.swift */; };
+		4F8222A4FC5C1C7325FE993F /* ColoringScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00033B1136AD8D2008F649 /* ColoringScreen.swift */; };
+		53D0BCBBDFD593D7B3DAE667 /* ColoringCanvasRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A69D682DEDE11B0ABA4AC /* ColoringCanvasRepresentable.swift */; };
+		5C87B9D3D76BB09229DACC8A /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C91C2E2AD83D939AA2981D7 /* ColorPalette.swift */; };
+		5F54FF6DAE3D45B0FA0258E4 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADA5E0C36D15E4ADF998B7 /* HistoryManager.swift */; };
+		62727E1AEE5A22E274787227 /* ColoringPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C79E6172FBA69FC9E63BC /* ColoringPage.swift */; };
+		6E294177537847FC089FA369 /* BrushSizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24347DBE21B17DEB1B4E3C0D /* BrushSizePicker.swift */; };
+		7523D3426CE9A885AC74AFA2 /* SampleCatPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B0D148A45794101DE9EA52 /* SampleCatPageRenderer.swift */; };
+		7B2F1666B67670ACC09B5B90 /* CanvasStatusOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */; };
+		80477E92F2A16D070E86A1D6 /* ColoringToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF071743D88C72B4741AD24 /* ColoringToolbar.swift */; };
 		88EC52C10D33AB4E5930FC21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C081854DC631700B670B671 /* LaunchScreen.storyboard */; };
+		8C32F999A38D7F7A6C4B045B /* PhotoSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */; };
+		9DAC66A5336723C1CF275713 /* ColoringTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E609A05637166572FC4A8B /* ColoringTool.swift */; };
+		A06776F0ED7F72AD38CAF59D /* BrushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3A30B3FAA7FF54BF1C724 /* BrushEngine.swift */; };
+		A67E09A578D4847AD129C577 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */; };
+		AA8F09299E9618CEA8A1E0B6 /* ColoringDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */; };
+		F7263D02AD31674C802A31CD /* PaintSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A93E09456FE6C61E711DA /* PaintSurface.swift */; };
+		F7DCBA29B3FF8CAB9A2CD98F /* BoundaryMaskBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54F0A875FDB7970B39BDDC /* BoundaryMaskBuilder.swift */; };
+		FDC1B55D86DBF812D7562080 /* BrushSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8B6E8D8FBEB2C31A81C2B /* BrushSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03247565A2E70CF036D95103 /* DrawingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingAction.swift; sourceTree = "<group>"; };
+		05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColor.swift; sourceTree = "<group>"; };
+		142C79E6172FBA69FC9E63BC /* ColoringPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPage.swift; sourceTree = "<group>"; };
+		1B0A69D682DEDE11B0ABA4AC /* ColoringCanvasRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringCanvasRepresentable.swift; sourceTree = "<group>"; };
+		24347DBE21B17DEB1B4E3C0D /* BrushSizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushSizePicker.swift; sourceTree = "<group>"; };
 		302967B54D3C2544A070F498 /* NativeKidsColoringEnginePrototype.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NativeKidsColoringEnginePrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FE01E98644F028CE93E0042 /* NativeKidsColoringEnginePrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeKidsColoringEnginePrototypeApp.swift; sourceTree = "<group>"; };
+		61B0D148A45794101DE9EA52 /* SampleCatPageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCatPageRenderer.swift; sourceTree = "<group>"; };
+		64E3A30B3FAA7FF54BF1C724 /* BrushEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushEngine.swift; sourceTree = "<group>"; };
+		7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSaveService.swift; sourceTree = "<group>"; };
+		71D07EFA2DEB4B0247A11605 /* ColoringScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringScrollView.swift; sourceTree = "<group>"; };
+		8C91C2E2AD83D939AA2981D7 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		8DE8B6E8D8FBEB2C31A81C2B /* BrushSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushSize.swift; sourceTree = "<group>"; };
+		8EF071743D88C72B4741AD24 /* ColoringToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringToolbar.swift; sourceTree = "<group>"; };
 		A5E42DF86DF51573E013AD0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A616CFCCE519D5BA2C712D27 /* FloodFillEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodFillEngine.swift; sourceTree = "<group>"; };
+		AC00033B1136AD8D2008F649 /* ColoringScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringScreen.swift; sourceTree = "<group>"; };
+		BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasStatusOverlay.swift; sourceTree = "<group>"; };
 		CEBD2CDDC3D181AC9DC2E54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D70A93E09456FE6C61E711DA /* PaintSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSurface.swift; sourceTree = "<group>"; };
+		DAADA5E0C36D15E4ADF998B7 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
+		DBBEB4DEB621611304B87D1A /* ColoringPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPageView.swift; sourceTree = "<group>"; };
+		DE54F0A875FDB7970B39BDDC /* BoundaryMaskBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundaryMaskBuilder.swift; sourceTree = "<group>"; };
 		EB3460590304249071EE5033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F1E609A05637166572FC4A8B /* ColoringTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringTool.swift; sourceTree = "<group>"; };
+		F33484297EED77AE6630EDE3 /* ColoringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringViewModel.swift; sourceTree = "<group>"; };
+		FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		1F38B54DB2172D627EA088A0 /* Coloring */ = {
+			isa = PBXGroup;
+			children = (
+				AC00033B1136AD8D2008F649 /* ColoringScreen.swift */,
+				F33484297EED77AE6630EDE3 /* ColoringViewModel.swift */,
+			);
+			path = Coloring;
+			sourceTree = "<group>";
+		};
 		27A64DDAC09AD4C6EAAD60E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -27,14 +82,92 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		38E101BDEF1C2170F44273B6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				24347DBE21B17DEB1B4E3C0D /* BrushSizePicker.swift */,
+				BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */,
+				8EF071743D88C72B4741AD24 /* ColoringToolbar.swift */,
+				8C91C2E2AD83D939AA2981D7 /* ColorPalette.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		63ABA264C94D553CF72FF8AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8DE8B6E8D8FBEB2C31A81C2B /* BrushSize.swift */,
+				142C79E6172FBA69FC9E63BC /* ColoringPage.swift */,
+				F1E609A05637166572FC4A8B /* ColoringTool.swift */,
+				03247565A2E70CF036D95103 /* DrawingAction.swift */,
+				05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		67C2F846BECE2A2FA0F2B5E2 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				1B0A69D682DEDE11B0ABA4AC /* ColoringCanvasRepresentable.swift */,
+				DBBEB4DEB621611304B87D1A /* ColoringPageView.swift */,
+				71D07EFA2DEB4B0247A11605 /* ColoringScrollView.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		97B48F1C214C156753222EE9 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				61B0D148A45794101DE9EA52 /* SampleCatPageRenderer.swift */,
+			);
+			path = Sample;
+			sourceTree = "<group>";
+		};
+		A53B4BF3409BCA547267AFE2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		C47D1A974DFBDE1903F92CBC /* NativeKidsColoringEnginePrototype */ = {
 			isa = PBXGroup;
 			children = (
 				EB3460590304249071EE5033 /* Assets.xcassets */,
 				A5E42DF86DF51573E013AD0C /* Info.plist */,
+				E4C27BCC81DBF09C3840A232 /* App */,
+				67C2F846BECE2A2FA0F2B5E2 /* Canvas */,
+				1F38B54DB2172D627EA088A0 /* Coloring */,
+				38E101BDEF1C2170F44273B6 /* Components */,
+				D18B22FB3BF43389C120465B /* Engine */,
 				4C081854DC631700B670B671 /* LaunchScreen.storyboard */,
+				63ABA264C94D553CF72FF8AB /* Models */,
+				97B48F1C214C156753222EE9 /* Sample */,
+				A53B4BF3409BCA547267AFE2 /* Services */,
 			);
 			path = NativeKidsColoringEnginePrototype;
+			sourceTree = "<group>";
+		};
+		D18B22FB3BF43389C120465B /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				DE54F0A875FDB7970B39BDDC /* BoundaryMaskBuilder.swift */,
+				64E3A30B3FAA7FF54BF1C724 /* BrushEngine.swift */,
+				FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */,
+				A616CFCCE519D5BA2C712D27 /* FloodFillEngine.swift */,
+				DAADA5E0C36D15E4ADF998B7 /* HistoryManager.swift */,
+				D70A93E09456FE6C61E711DA /* PaintSurface.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		E4C27BCC81DBF09C3840A232 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3FE01E98644F028CE93E0042 /* NativeKidsColoringEnginePrototypeApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		FCF62D31EFFA0370006BA044 = {
@@ -113,6 +246,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DCBA29B3FF8CAB9A2CD98F /* BoundaryMaskBuilder.swift in Sources */,
+				A06776F0ED7F72AD38CAF59D /* BrushEngine.swift in Sources */,
+				FDC1B55D86DBF812D7562080 /* BrushSize.swift in Sources */,
+				6E294177537847FC089FA369 /* BrushSizePicker.swift in Sources */,
+				7B2F1666B67670ACC09B5B90 /* CanvasStatusOverlay.swift in Sources */,
+				5C87B9D3D76BB09229DACC8A /* ColorPalette.swift in Sources */,
+				53D0BCBBDFD593D7B3DAE667 /* ColoringCanvasRepresentable.swift in Sources */,
+				AA8F09299E9618CEA8A1E0B6 /* ColoringDocument.swift in Sources */,
+				62727E1AEE5A22E274787227 /* ColoringPage.swift in Sources */,
+				170C1F0E729244A3C5977507 /* ColoringPageView.swift in Sources */,
+				4F8222A4FC5C1C7325FE993F /* ColoringScreen.swift in Sources */,
+				236644CAB277536217CDE297 /* ColoringScrollView.swift in Sources */,
+				9DAC66A5336723C1CF275713 /* ColoringTool.swift in Sources */,
+				80477E92F2A16D070E86A1D6 /* ColoringToolbar.swift in Sources */,
+				0293D8CFB011D9214774E2A7 /* ColoringViewModel.swift in Sources */,
+				1D04D0669DBAD64EB594EBBF /* DrawingAction.swift in Sources */,
+				21A7C1B8F8EBEC7FCFEB2476 /* FloodFillEngine.swift in Sources */,
+				5F54FF6DAE3D45B0FA0258E4 /* HistoryManager.swift in Sources */,
+				477F230F2A50843132F6B61B /* NativeKidsColoringEnginePrototypeApp.swift in Sources */,
+				F7263D02AD31674C802A31CD /* PaintSurface.swift in Sources */,
+				A67E09A578D4847AD129C577 /* PaletteColor.swift in Sources */,
+				8C32F999A38D7F7A6C4B045B /* PhotoSaveService.swift in Sources */,
+				7523D3426CE9A885AC74AFA2 /* SampleCatPageRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +301,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -179,7 +335,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};

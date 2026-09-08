@@ -1,0 +1,133 @@
+import SwiftUI
+import UIKit
+
+@MainActor
+struct ColoringScreen: View {
+    @State private var viewModel = ColoringViewModel()
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    var body: some View {
+        @Bindable var viewModel = viewModel
+
+        GeometryReader { geometry in
+            let usesSideDeck = horizontalSizeClass == .regular || (geometry.size.width > geometry.size.height && geometry.size.width > 650)
+
+            VStack(spacing: 0) {
+                ColoringToolbar(
+                    canUndo: viewModel.canUndo,
+                    canRedo: viewModel.canRedo,
+                    isSaving: viewModel.isSaving,
+                    undo: viewModel.undo,
+                    redo: viewModel.redo,
+                    reset: { viewModel.isResetConfirmationPresented = true },
+                    save: viewModel.save
+                )
+
+                if usesSideDeck {
+                    HStack(spacing: 0) {
+                        canvas
+                        controlDeck
+                            .frame(width: min(290, geometry.size.width * 0.34))
+                            .background(Color(uiColor: .secondarySystemBackground))
+                    }
+                } else {
+                    VStack(spacing: 0) {
+                        canvas
+                        controlDeck
+                            .background(Color(uiColor: .secondarySystemBackground))
+                    }
+                }
+            }
+            .background(Color(uiColor: .systemGroupedBackground))
+        }
+        .ignoresSafeArea(.keyboard)
+        .alert("Start over?", isPresented: $viewModel.isResetConfirmationPresented) {
+            Button("Cancel", role: .cancel) {}
+            Button("Clear My Colors", role: .destructive) {
+                viewModel.confirmReset()
+            }
+        } message: {
+            Text("This clears all paint and the undo history. The black cat lines stay in place.")
+        }
+        .alert(item: $viewModel.saveAlert) { alert in
+            if case .denied = alert {
+                return Alert(
+                    title: Text(alert.title),
+                    message: Text(alert.message),
+                    primaryButton: .default(Text("Open Settings"), action: openSettings),
+                    secondaryButton: .cancel()
+                )
+            }
+            return Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .tint(Color(red: 0.08, green: 0.47, blue: 0.94))
+    }
+
+    private var canvas: some View {
+        ZStack {
+            ColoringCanvasRepresentable(
+                document: viewModel.document,
+                tool: viewModel.selectedTool,
+                color: viewModel.selectedColor.rgba,
+                brushSize: viewModel.brushSize,
+                fillEnabled: !viewModel.isPreparingRegions,
+                onEditFinished: viewModel.refreshHistoryState
+            )
+            CanvasStatusOverlay(isPreparing: viewModel.isPreparingRegions)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipped()
+        .accessibilityElement(children: .contain)
+    }
+
+    private var controlDeck: some View {
+        VStack(spacing: 10) {
+            HStack(spacing: 8) {
+                ForEach(ColoringTool.allCases) { tool in
+                    Button {
+                        viewModel.selectedTool = tool
+                    } label: {
+                        VStack(spacing: 4) {
+                            Image(systemName: tool.symbolName)
+                                .font(.system(size: 20, weight: .semibold))
+                            Text(tool.title)
+                                .font(.caption.weight(.bold))
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 52)
+                        .foregroundStyle(viewModel.selectedTool == tool ? Color.accentColor : Color.primary.opacity(0.72))
+                        .background(
+                            viewModel.selectedTool == tool ? Color.accentColor.opacity(0.15) : Color.black.opacity(0.04),
+                            in: RoundedRectangle(cornerRadius: 14)
+                        )
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(viewModel.selectedTool == tool ? Color.accentColor : .clear, lineWidth: 2)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(tool.title)
+                    .accessibilityAddTraits(viewModel.selectedTool == tool ? .isSelected : [])
+                }
+            }
+
+            BrushSizePicker(
+                selection: $viewModel.brushSize,
+                isVisible: viewModel.selectedTool == .brush || viewModel.selectedTool == .eraser
+            )
+
+            ColorPalette(selection: $viewModel.selectedColor)
+        }
+        .padding(.horizontal, 12)
+        .padding(.top, 10)
+        .padding(.bottom, 8)
+    }
+
+    private func openSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
+    }
+}

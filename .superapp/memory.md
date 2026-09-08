@@ -15,8 +15,10 @@ Prefer native Apple-like UI. Avoid web-dashboard-style components unless explici
 
 ## Decisions
 
-None yet.
+- Phase 0 uses a fixed 1024×1024 Core Graphics cat page, a dilated immutable boundary mask, cached connected-component regions, and one transparent RGBA paint surface under immutable line art.
+- All paint mutations and UI state are MainActor-confined. Undo/redo stores compressed exact 64×64 before/after tile patches with a 25-action and 48 MB budget.
+- UIKit owns canvas touch handling and UIScrollView navigation; one touch/Pencil edits while pan requires two touches. Photos permission is add-only and requested only by Save.
 
 ## Pitfalls
 
-None yet.
+- `project.yml` is the source of truth; regenerate with XcodeGen rather than editing `project.pbxproj`.
