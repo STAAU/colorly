@@ -11,6 +11,9 @@ import UIKit
     private let historyRepository = GeneratedHistoryRepository()
     private var generationService: any AIGenerationService
     let photoAssets = PhotoAssetRepository()
+    let subscriptions = SubscriptionManager()
+    var showsPaywall = false
+    var paywallContext: String?
     private let photoRepository = PhotoHistoryRepository()
     private var photoService: any PhotoGenerationService
     var projects:[ColoringProject]=[]; var favorites:Set<String>=[]; var generatedHistory:[GeneratedPageRecord]=[]; var photoHistory:[PhotoGenerationRecord]=[]
@@ -53,6 +56,8 @@ import UIKit
             } else if pendingPhotoID != nil { try? await photoRepository.setPending(nil) }
         }
     }
+    func presentPaywall(context: String? = nil) { paywallContext = context; showsPaywall = true }
+    func canStart(_ page: ColoringPage) -> Bool { page.source != .curated || !page.isPremium || subscriptions.access.hasPremium || project(for: page.id) != nil }
     func page(id:String)->ColoringPage? { content.page(id:id) ?? generatedHistory.first(where:{$0.page.id==id})?.page ?? photoHistory.first(where:{$0.page.id==id})?.page }
     func image(for record:GeneratedPageRecord, thumbnail:Bool)->UIImage? { generatedAssets.image(path:thumbnail ? record.thumbnailPath:record.masterPath) }
     func asset(for page:ColoringPage, project:ColoringProject? = nil) async -> ColoringPageAsset? {

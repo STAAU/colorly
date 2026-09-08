@@ -18,6 +18,8 @@
 		22CC4A40D5CD6E689EDD78CE /* ProjectStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F94D988496E92D7F64B7EFB /* ProjectStorageService.swift */; };
 		236644CAB277536217CDE297 /* ColoringScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D07EFA2DEB4B0247A11605 /* ColoringScrollView.swift */; };
 		23F15C855185CC82BEEC68FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB3460590304249071EE5033 /* Assets.xcassets */; };
+		2B52EAC539CBB76682630D7F /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 8F09F00244982B798723485B /* RevenueCat */; };
+		398069C3FC37983146B7CAC3 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4A9320F569BF60EF74299F /* Supabase */; };
 		3EC61C9CF0B443FBF6D5AC1A /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295AFE525FBCD4DC28B8C23 /* ExploreView.swift */; };
 		3F71562427A91E0EE6BE27A5 /* ColoringProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318B86F4ACB60F057D48F696 /* ColoringProject.swift */; };
 		477F230F2A50843132F6B61B /* NativeKidsColoringEnginePrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE01E98644F028CE93E0042 /* NativeKidsColoringEnginePrototypeApp.swift */; };
@@ -50,14 +52,17 @@
 		9BF5C184267AF1B8A724E15E /* ArtfulStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FF643E4436BA6CC8F02916 /* ArtfulStyle.swift */; };
 		9DAC66A5336723C1CF275713 /* ColoringTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E609A05637166572FC4A8B /* ColoringTool.swift */; };
 		A06776F0ED7F72AD38CAF59D /* BrushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3A30B3FAA7FF54BF1C724 /* BrushEngine.swift */; };
+		A414C34939BD389044DE2A55 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907C34C5B27F9C4401F9934 /* SubscriptionManager.swift */; };
 		A67E09A578D4847AD129C577 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB2156BF1EFB494F7A5F55 /* PaletteColor.swift */; };
 		AA8F09299E9618CEA8A1E0B6 /* ColoringDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */; };
 		B3ABDD16DA20C3103455A060 /* LocalArtworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8338032EF427D785F7D7D3 /* LocalArtworkProvider.swift */; };
+		B874CCFFE15DF36C8BAFAD31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF8A7EB2237B6B22B714578 /* SettingsView.swift */; };
 		B993A066ECDC0F10D00D69D8 /* PhotoCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B74240722A551506B3EF4 /* PhotoCreateView.swift */; };
 		C3486499AF96CEEC92635771 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FAE9ED69EECED05E8089FB /* CategoryView.swift */; };
 		C6072EAD00D71DBAEE3F6A6A /* GeneratedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6E861EF220735C84F945E2 /* GeneratedContent.swift */; };
 		D33673F40DC4100C9EFF5255 /* PhotoGenerationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30892A093FD637715C28227E /* PhotoGenerationServices.swift */; };
 		D80631FEDB50A50FA02235D4 /* ColoringPageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713734F0345D2228CE3BA0D9 /* ColoringPageCard.swift */; };
+		E9B99960D54CAFC4A3961E9A /* PremiumPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC3A53835C0B190085E0867 /* PremiumPaywallView.swift */; };
 		F49167BDFF7187B7AA9CEB8C /* ColoringPagePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B2F47D1554971276FC814 /* ColoringPagePreviewView.swift */; };
 		F7263D02AD31674C802A31CD /* PaintSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A93E09456FE6C61E711DA /* PaintSurface.swift */; };
 		F7DCBA29B3FF8CAB9A2CD98F /* BoundaryMaskBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54F0A875FDB7970B39BDDC /* BoundaryMaskBuilder.swift */; };
@@ -85,6 +90,7 @@
 		3F8DF6903D1143DCC1DB159A /* ProjectCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCard.swift; sourceTree = "<group>"; };
 		3FE01E98644F028CE93E0042 /* NativeKidsColoringEnginePrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeKidsColoringEnginePrototypeApp.swift; sourceTree = "<group>"; };
 		401397C293A452E7EC692AB3 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
+		5BC3A53835C0B190085E0867 /* PremiumPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPaywallView.swift; sourceTree = "<group>"; };
 		61B0D148A45794101DE9EA52 /* SampleCatPageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCatPageRenderer.swift; sourceTree = "<group>"; };
 		64E3A30B3FAA7FF54BF1C724 /* BrushEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushEngine.swift; sourceTree = "<group>"; };
 		6AB654C19E0F64572C60E36B /* ThumbnailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailService.swift; sourceTree = "<group>"; };
@@ -105,6 +111,7 @@
 		A616CFCCE519D5BA2C712D27 /* FloodFillEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodFillEngine.swift; sourceTree = "<group>"; };
 		A737D1DC4679A6839F5DC918 /* SampleContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleContent.swift; sourceTree = "<group>"; };
 		AC00033B1136AD8D2008F649 /* ColoringScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringScreen.swift; sourceTree = "<group>"; };
+		AFF8A7EB2237B6B22B714578 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BB58ABE2BE866B949B298EF4 /* LocalContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalContentRepository.swift; sourceTree = "<group>"; };
 		BCDCB13863BC648160108EBB /* CanvasStatusOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasStatusOverlay.swift; sourceTree = "<group>"; };
 		C62B2F47D1554971276FC814 /* ColoringPagePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPagePreviewView.swift; sourceTree = "<group>"; };
@@ -118,11 +125,24 @@
 		DBBEB4DEB621611304B87D1A /* ColoringPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringPageView.swift; sourceTree = "<group>"; };
 		DE54F0A875FDB7970B39BDDC /* BoundaryMaskBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundaryMaskBuilder.swift; sourceTree = "<group>"; };
 		DE98C1B1DC0AC26EAEAAC370 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E907C34C5B27F9C4401F9934 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		EB3460590304249071EE5033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1E609A05637166572FC4A8B /* ColoringTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringTool.swift; sourceTree = "<group>"; };
 		F33484297EED77AE6630EDE3 /* ColoringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringViewModel.swift; sourceTree = "<group>"; };
 		FDAC4FCAC51A0C8731DC6279 /* ColoringDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoringDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8CC5F24E414D64E31E51CF10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B52EAC539CBB76682630D7F /* RevenueCat in Frameworks */,
+				398069C3FC37983146B7CAC3 /* Supabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0154294398F7F4DB9B6A3E39 /* Photo */ = {
@@ -235,6 +255,14 @@
 			path = Sample;
 			sourceTree = "<group>";
 		};
+		9E6C48A352F5AE655ABE1500 /* Premium */ = {
+			isa = PBXGroup;
+			children = (
+				5BC3A53835C0B190085E0867 /* PremiumPaywallView.swift */,
+			);
+			path = Premium;
+			sourceTree = "<group>";
+		};
 		A53B4BF3409BCA547267AFE2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +271,7 @@
 				30892A093FD637715C28227E /* PhotoGenerationServices.swift */,
 				7035A03F69BAC26C73BE6991 /* PhotoSaveService.swift */,
 				1F94D988496E92D7F64B7EFB /* ProjectStorageService.swift */,
+				E907C34C5B27F9C4401F9934 /* SubscriptionManager.swift */,
 				6AB654C19E0F64572C60E36B /* ThumbnailService.swift */,
 			);
 			path = Services;
@@ -277,8 +306,10 @@
 				4DEB3E6F9B0C6E167E56628A /* Home */,
 				4C081854DC631700B670B671 /* LaunchScreen.storyboard */,
 				63ABA264C94D553CF72FF8AB /* Models */,
+				9E6C48A352F5AE655ABE1500 /* Premium */,
 				97B48F1C214C156753222EE9 /* Sample */,
 				A53B4BF3409BCA547267AFE2 /* Services */,
+				D2B0E7A9117FE9D2764185DA /* Settings */,
 			);
 			path = NativeKidsColoringEnginePrototype;
 			sourceTree = "<group>";
@@ -303,6 +334,14 @@
 				D70A93E09456FE6C61E711DA /* PaintSurface.swift */,
 			);
 			path = Engine;
+			sourceTree = "<group>";
+		};
+		D2B0E7A9117FE9D2764185DA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AFF8A7EB2237B6B22B714578 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		E4C27BCC81DBF09C3840A232 /* App */ = {
@@ -333,6 +372,7 @@
 			buildPhases = (
 				7E753530B7B5493A65ED0DE9 /* Sources */,
 				1B2D2965700FBB47181F4F2F /* Resources */,
+				8CC5F24E414D64E31E51CF10 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,6 +380,8 @@
 			);
 			name = NativeKidsColoringEnginePrototype;
 			packageProductDependencies = (
+				8F09F00244982B798723485B /* RevenueCat */,
+				0E4A9320F569BF60EF74299F /* Supabase */,
 			);
 			productName = NativeKidsColoringEnginePrototype;
 			productReference = 302967B54D3C2544A070F498 /* NativeKidsColoringEnginePrototype.app */;
@@ -365,6 +407,10 @@
 			);
 			mainGroup = FCF62D31EFFA0370006BA044;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5FE60202A067EB3DBAE20446 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				ED937778999C219BDFAE1879 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 27A64DDAC09AD4C6EAAD60E9 /* Products */;
 			projectDirPath = "";
@@ -440,10 +486,13 @@
 				4EA36A52B6F2FDDA5F167DD8 /* PhotoGeneration.swift in Sources */,
 				D33673F40DC4100C9EFF5255 /* PhotoGenerationServices.swift in Sources */,
 				8C32F999A38D7F7A6C4B045B /* PhotoSaveService.swift in Sources */,
+				E9B99960D54CAFC4A3961E9A /* PremiumPaywallView.swift in Sources */,
 				4F29EF97B08FC5C75407F477 /* ProjectCard.swift in Sources */,
 				22CC4A40D5CD6E689EDD78CE /* ProjectStorageService.swift in Sources */,
 				7523D3426CE9A885AC74AFA2 /* SampleCatPageRenderer.swift in Sources */,
 				49A86CB93E469A2959F6E832 /* SampleContent.swift in Sources */,
+				B874CCFFE15DF36C8BAFAD31 /* SettingsView.swift in Sources */,
+				A414C34939BD389044DE2A55 /* SubscriptionManager.swift in Sources */,
 				9485CDEA72ED735CAA9FF917 /* ThumbnailService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +586,38 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5FE60202A067EB3DBAE20446 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		ED937778999C219BDFAE1879 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E4A9320F569BF60EF74299F /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED937778999C219BDFAE1879 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		8F09F00244982B798723485B /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5FE60202A067EB3DBAE20446 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1DB924D24B67E0BD5B4AB286 /* Project object */;
 }

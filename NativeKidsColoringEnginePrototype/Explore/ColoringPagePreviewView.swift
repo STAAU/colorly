@@ -17,8 +17,11 @@ struct ColoringPagePreviewView: View {
                         Image(systemName: model.favorites.contains(page.id) ? "heart.fill" : "heart").font(.title3).frame(width: 48, height: 48).background(.regularMaterial, in: Circle()).foregroundStyle(Color.artCoral)
                     }.buttonStyle(PressScaleStyle()).accessibilityLabel(model.favorites.contains(page.id) ? "Remove favorite" : "Favorite")
                 }
-                Button { editorProject = model.makeProject(for: page) } label: {
-                    Label(model.project(for: page.id) == nil ? "Start coloring" : "Continue coloring", systemImage: "paintbrush.fill")
+                Button {
+                    if model.canStart(page) { editorProject = model.makeProject(for: page) }
+                    else { model.presentPaywall(context: "Unlock \(page.title) and every premium coloring page.") }
+                } label: {
+                    Label(model.project(for: page.id) == nil ? (model.canStart(page) ? "Start coloring" : "Unlock with Premium") : "Continue coloring", systemImage: model.canStart(page) ? "paintbrush.fill" : "lock.fill")
                         .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 15).background(Color.artInk, in: Capsule()).foregroundStyle(.white)
                 }.buttonStyle(PressScaleStyle())
             }.padding(20).frame(maxWidth: 760)

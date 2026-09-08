@@ -30,6 +30,11 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.superapp.nativekidscoloringengineprototgky1m
     sources:
       - path: NativeKidsColoringEnginePrototype
+    dependencies:
+      - package: RevenueCat
+        product: RevenueCat
+      - package: Supabase
+        product: Supabase
     info:
       path: NativeKidsColoringEnginePrototype/Info.plist
       properties:
@@ -59,6 +64,14 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+
+packages:
+  RevenueCat:
+    url: https://github.com/RevenueCat/purchases-ios.git
+    from: 5.0.0
+  Supabase:
+    url: https://github.com/supabase/supabase-swift.git
+    from: 2.0.0
 
 schemes:
   NativeKidsColoringEnginePrototype:

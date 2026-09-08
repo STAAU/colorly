@@ -5,6 +5,7 @@ struct HomeView: View {
     @State private var resume: ColoringProject?
     @State private var showsCreate = false
     @State private var showsPhotoCreate = false
+    @State private var showsSettings = false
 
     private var featured: ColoringPage? { model.content.pages.first(where: \.isFeatured) ?? model.content.pages.first }
     private var activeProjects: [ColoringProject] { Array(model.projects.filter { $0.status == .inProgress }.sorted { $0.updatedAt > $1.updatedAt }.prefix(6)) }
@@ -13,7 +14,13 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 34) {
-                    EditorialHeader(eyebrow: "Your creative space", title: "Color something wonderful")
+                    HStack(alignment: .top) {
+                        EditorialHeader(eyebrow: "Your creative space", title: "Color something wonderful")
+                        VStack(spacing: 10) {
+                            Button { model.presentPaywall(context: "Discover every premium page in the collection.") } label: { Image(systemName: model.subscriptions.access.hasPremium ? "sparkles" : "crown.fill").frame(width: 44, height: 44).background(Color.artLavender.opacity(0.18), in: Circle()) }.accessibilityLabel("Premium")
+                            Button { showsSettings = true } label: { Image(systemName: "gearshape.fill").frame(width: 44, height: 44).background(.thinMaterial, in: Circle()) }.accessibilityLabel("Settings")
+                        }.foregroundStyle(Color.artInk)
+                    }
                     createHero
                     if let featured { hero(featured) }
                     continueSection
@@ -33,6 +40,7 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showsCreate) { CreateView() }
         .sheet(isPresented: $showsPhotoCreate) { PhotoCreateView() }
+        .sheet(isPresented: $showsSettings) { SettingsView() }
     }
 
     private var createHero: some View {
