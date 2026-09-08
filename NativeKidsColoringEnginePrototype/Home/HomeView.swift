@@ -13,14 +13,16 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 34) {
-                    HStack(alignment: .top) {
-                        EditorialHeader(eyebrow: "Your creative space", title: "Color something wonderful")
-                        VStack(spacing: 10) {
-                            Button { model.presentPaywall(context: "Discover every premium page in the collection.") } label: { Image(systemName: model.subscriptions.access.hasPremium ? "sparkles" : "crown.fill").frame(width: 44, height: 44).background(Color.artLavender.opacity(0.18), in: Circle()) }.accessibilityLabel("Premium")
-                            Button { showsSettings = true } label: { Image(systemName: "gearshape.fill").frame(width: 44, height: 44).background(.thinMaterial, in: Circle()) }.accessibilityLabel("Settings")
-                        }.foregroundStyle(Color.artInk)
+                VStack(alignment: .leading, spacing: 28) {
+                    HStack {
+                        Text("colorly").font(.title3.weight(.heavy)).foregroundStyle(Color.artInk)
+                        Spacer()
+                        HStack(spacing: 8) {
+                            Button { model.presentPaywall(context: "Discover every premium page in the collection.") } label: { Image(systemName: model.subscriptions.access.hasPremium ? "sparkles" : "crown.fill").font(.system(size: 15, weight: .semibold)).frame(width: 38, height: 38).foregroundStyle(Color.artLavender).background(Color.artLavender.opacity(0.16), in: Circle()) }.accessibilityLabel("Premium")
+                            Button { showsSettings = true } label: { Image(systemName: "gearshape.fill").font(.system(size: 15, weight: .semibold)).frame(width: 38, height: 38).foregroundStyle(Color.artInk).background(Color.primary.opacity(0.06), in: Circle()) }.accessibilityLabel("Settings")
+                        }
                     }
+                    EditorialHeader(eyebrow: "Your creative space", title: "Color something new.")
                     createHero
                     if let featured { hero(featured) }
                     continueSection

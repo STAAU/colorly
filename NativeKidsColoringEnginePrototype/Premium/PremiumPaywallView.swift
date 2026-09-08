@@ -74,7 +74,7 @@ struct PremiumPaywallView: View {
                                 Text(package.storeProduct.localizedPriceString).foregroundStyle(.secondary)
                             }
                             Spacer()
-                            if package.packageType == .annual { Text("BEST VALUE").font(.caption2.bold()).padding(7).background(Color.artMint.opacity(0.25), in: Capsule()) }
+                            if package.packageType == .annual { Text("BEST VALUE").font(.caption2.weight(.heavy)).tracking(0.3).foregroundStyle(.white).padding(.horizontal, 9).padding(.vertical, 5).background(Color.artCoral, in: Capsule()) }
                             Image(systemName: selection == package.identifier ? "checkmark.circle.fill" : "circle").font(.title2)
                         }.padding(17).background(selection == package.identifier ? Color.artLavender.opacity(0.16) : .white.opacity(0.7), in: RoundedRectangle(cornerRadius: 20))
                     }.buttonStyle(.plain)
