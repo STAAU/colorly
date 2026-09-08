@@ -1,36 +1,82 @@
 ---
-title: Phase 5 — RevenueCat, Premium Access, and AI Usage Control
+title: Supabase ve GitHub Hedeflerini Düzelt
 status: approved
-updatedAt: 2026-09-08T19:22:00Z
-approvedAt: 2026-09-08T19:22:00Z
+updatedAt: 2026-09-08T20:15:38.867Z
+approvedAt: 2026-09-08T20:15:38.867Z
+proposal:
+  messageId: chm_01m21ag4smfq88h717sa7zc0g2
+  toolCallId: call_MqsPxbIe8Wj900mAdXli9cVg
 ---
-A free user can keep coloring and retain every creation, while contextual premium entry points offer Monthly and Yearly subscriptions through RevenueCat. Premium entitlement reacts immediately to purchase, restore, renewal, refund, and expiration. Costly generation access is decided by authenticated server state and configurable server-time limits, never by a client premium flag.
+Phase 5 altyapısı yanlış Superapp Cloud projesinden kullanıcının Supabase projesine taşınacak ve mevcut commit geçmişi kullanıcının GitHub reposuna gönderilecek.
+
+**Onaylanan hedefler**
+- Supabase proje ref: `amshmuuxomoquggqepik`
+- Supabase Dashboard: `https://supabase.com/dashboard/project/amshmuuxomoquggqepik`
+- GitHub repo: `https://github.com/STAAU/colorly`
+- Mevcut uygulama ve Coloring Engine korunacak; proje yeniden kurulmayacak.
+- Yanlış kullanılan Supabase ref’i `mqpwhaxmeamlgydhkdnc` artık uygulama veya üretim backend hedefi olmayacak.
+
+**Varsayım / erişim gereksinimi**
+- Hedef Supabase projesi Superapp çalışma alanına yetkili şekilde bağlanmalıdır. Sadece Dashboard URL’si; migration, Edge Function ve secret deploy etmek için yeterli kimlik doğrulama sağlamaz.
+- GitHub reposuna push için bağlı GitHub hesabının `STAAU/colorly` yazma yetkisi olmalıdır.
 
 ## Now
-1. Add one RevenueCat `premium` entitlement, one current Offering, Monthly and Yearly packages/products, with Yearly preferred. Use RevenueCat offerings and localized StoreKit prices; never hard-code price or trial claims.
-2. Add a centralized RevenueCat subscription service with stable anonymous identity linked to an anonymous Supabase user, cached/reactive entitlement states, customer-info refresh, purchase cancellation/pending/error handling, restore, and native subscription management.
-3. Add a custom artwork-led native paywall, respectful parent-readable subscription language, real product artwork, concise benefits, dynamic plan choices, retry/loading states, Restore Purchases, Privacy Policy, and Terms of Use.
-4. Add contextual paywall routing from premium content, AI/photo limits, Home, and a minimal Settings screen. Do not show a launch paywall.
-5. Enforce premium curated page starts while allowing preview/favorite; always allow continuation of an existing project and all existing AI/photo creations after expiration.
-6. Add backend tables and RLS for trusted user entitlements, idempotent RevenueCat events, central plan limits, and usage periods/counters. Use server timestamps and transactional allowance reservation.
-7. Deploy a secured RevenueCat webhook that validates a server-only authorization value, idempotently maps relevant lifecycle events into trusted entitlement state, and never accepts client-written premium values.
-8. Deploy an authenticated generation-access endpoint that derives tier from trusted entitlement state, reads central limits, applies daily Free/monthly Premium periods, and returns typed allowed/limit/offline responses. Existing local fixture generators remain local; this endpoint is the authority required before any future provider call.
-9. Add polished limit-reached UX that offers Premium only to Free users and shows reset/fair-use messaging to Premium users. Keep counters contextual rather than persistent.
-10. Preserve all engine, project, favorites, cache, Gallery, and creation data. Do not modify Engine or Canvas.
 
-### Verification
-- Build the iPhone app and inspect that Engine/Canvas remain unchanged.
-- Verify RevenueCat configuration, current offering/package/product links, and `premium` attachment.
-- Verify RLS/advisors, webhook idempotency, client inability to write entitlements, server-time period selection, Free/Premium limits, and duplicate reservation safety.
-- Manually test free launch, premium page, dynamic offering failure, purchase cancellation/pending/success, restore outcomes, mid-session state changes, expiration, existing-project access, offline cached premium UI, and localized prices on sandbox/physical devices once App Store products and RevenueCat App Store credentials are available.
+### Sonuç
+Uygulama yalnızca `amshmuuxomoquggqepik` Supabase projesini kullanır; Phase 5 veritabanı, limit otoritesi ve webhook bu projede çalışır; doğrulanan kaynak kodu ve commit geçmişi `STAAU/colorly` reposuna gönderilir.
+
+### Uygulama adımları
+1. **Hedef Supabase bağlantısını doğrula**
+   - Superapp Cloud yerine `amshmuuxomoquggqepik` projesine yetkili bağlantı kur.
+   - Hedef proje URL’sini ve publishable key’i doğrudan Supabase’den doğrula; secret/service-role değerlerini uygulama kaynaklarına yazma.
+
+2. **Phase 5 şemasını hedef projeye taşı**
+   - `subscription_plan_limits`, `user_entitlements`, `generation_usage` ve webhook idempotency tablolarını aynı migration sözleşmesiyle oluştur.
+   - Free günlük ve Premium aylık limitleri tek backend tablosunda tut.
+   - RLS, servis rolü izinleri, advisory transaction lock ve server-time dönem hesaplarını yeniden uygula.
+
+3. **Edge Function’ları hedef projeye deploy et**
+   - JWT doğrulamalı `generation-access` fonksiyonunu deploy et.
+   - Secret ile korunan ve tekrar gönderilen olaylara dayanıklı `revenuecat-webhook` fonksiyonunu deploy et.
+   - `REVENUECAT_WEBHOOK_AUTHORIZATION` değerini yalnızca hedef Supabase Secrets içinde sakla.
+
+4. **iOS bağlantısını düzelt**
+   - `NativeKidsColoringEnginePrototype/Services/SubscriptionManager.swift` içindeki eski Supabase URL/key yapılandırmasını hedef projenin doğrulanmış public değerleriyle değiştir.
+   - `GenerationAccessService` ve anonim Supabase kimliğinin aynı hedef client/session üzerinden çalıştığını doğrula.
+   - RevenueCat müşteri kimliğini bu hedef Supabase kullanıcısının kararlı UUID’siyle eşleştirmeye devam et.
+
+5. **Yanlış proje bağımlılığını kaldır**
+   - Kaynak kodunda `mqpwhaxmeamlgydhkdnc` referansı kalmadığını ara.
+   - Yanlış projedeki verileri otomatik silme; silme ayrı ve geri döndürülemez bir karar olarak tutulacak.
+
+6. **GitHub hedefini düzelt ve gönder**
+   - Mevcut Superapp storage remote’u yerine `https://github.com/STAAU/colorly.git` hedefini doğrula/ayarla.
+   - Phase 5 commitleri dahil mevcut dalı push et; geçmişi force-push ile yeniden yazma.
+   - Push sonrası remote dal SHA’sının yerel HEAD ile aynı olduğunu doğrula.
+
+### Doğrulama
+- Hedef Supabase’de tabloları, RLS politikalarını, fonksiyon izinlerini ve Edge Function durumlarını kontrol et.
+- Yanlış webhook authorization ile `401`, kimliksiz generation isteğiyle `401`, geçerli anonim kullanıcıyla server-owned limit sonucu alındığını doğrula.
+- Supabase security advisor’da çözülmemiş kritik/yüksek bulgu olmadığını doğrula.
+- iPhone hedefini yeniden build et.
+- `Engine/` ve `Canvas/` altında değişiklik olmadığını doğrula.
+- Kaynakta eski Supabase ref’i kalmadığını doğrula.
+- GitHub `STAAU/colorly` remote HEAD’inin yerel commit ile eşleştiğini doğrula.
+
+### Riskler
+- Hedef Supabase yetkilendirmesi bağlanmadan migration ve Edge Function deploy edilemez.
+- Hedef projede aynı isimli mevcut tablolar/fonksiyonlar varsa önce uyumluluk kontrolü gerekir; veri kaybına yol açan `drop` işlemleri uygulanmaz.
+- GitHub repo mevcut ve farklı bir geçmişe sahipse force-push yapılmaz; geçmişler güvenli biçimde birleştirilmeden gönderim durdurulur.
 
 ## Next
-1. Create the matching subscription group and products in App Store Connect, set territory prices/localizations/review metadata, and add App Store Connect credentials to RevenueCat; the App Store record does not yet exist for this bundle ID.
-2. Add the RevenueCat webhook authorization secret to Supabase and set the deployed webhook URL in RevenueCat, then perform signed sandbox webhook and duplicate-delivery tests.
-3. Route the future live text/photo provider functions through the generation-access reservation before charging the provider, and add reservation release/reconciliation for provider failures.
-4. Complete App Store listing privacy/support/terms URLs and run the submission-readiness audit.
+
+1. **RevenueCat webhook hedefini güncelle** — RevenueCat Dashboard’daki webhook URL’sini yeni `amshmuuxomoquggqepik` Edge Function adresine ve aynı authorization değerine bağla.
+2. **App Store Connect abonelik kayıtlarını tamamla** — Monthly/Yearly ürünleri ve RevenueCat App Store credentials olmadan gerçek sandbox satın alma testi tamamlanamaz.
+3. **Fiziksel cihaz kabul testi** — satın alma, restore, entitlement relaunch, limit, expiration ve offline davranışlarını gerçek iPhone’da doğrula.
 
 ## Later
-- Final commercial allowance tuning after cost and conversion data.
-- Optional premium palettes/tools or higher export quality only when those real features exist.
-- Ads, coins, consumable credit packs, lifetime purchases, web checkout, community, referrals, chat, and social features.
+
+- Yanlış Superapp Cloud projesini veya içindeki Phase 5 tablolarını silmek; açık onay olmadan yapılmayacak.
+- Reklam, coin, lifetime purchase, community veya başka monetizasyon modelleri.
+- Coloring Engine değişiklikleri.
+- Otomatik testler bu düzeltme kapsamında değildir.
